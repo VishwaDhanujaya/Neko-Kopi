@@ -1,0 +1,15 @@
+{
+  "name": "neko-cafe",
+  "version": "1.0.0",
+  "description": "Neko & Kopi - Cozy Cat Café Website",
+  "scripts": {
+    "watch": "tailwindcss -i ./src/input.css -o ./assets/css/style.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./assets/css/style.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}
