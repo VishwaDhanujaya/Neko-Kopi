@@ -7,12 +7,12 @@ $base = '/NekoCafe';
 </main>
 
 <!-- FOOTER -->
-<footer style="background:#2E1A0E; color:#EDE0CC;">
+<footer style="background:#1D1D1F; color:#EDE0CC;">
 
   <!-- Wave -->
   <div class="overflow-hidden" style="margin-bottom:-2px; line-height:0;">
     <svg viewBox="0 0 1440 56" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;height:56px;display:block;">
-      <path d="M0 40 C360 70 1080 10 1440 40 L1440 0 L0 0 Z" fill="#FAF6F0"/>
+      <path d="M0 40 C360 70 1080 10 1440 40 L1440 0 L0 0 Z" fill="#FBFBFA"/>
     </svg>
   </div>
 
@@ -34,11 +34,17 @@ $base = '/NekoCafe';
         <div class="flex items-center gap-3 mt-1">
           <a href="https://instagram.com" id="footer-instagram" target="_blank" rel="noopener"
              aria-label="Instagram" class="footer-icon-btn">
-            <i data-lucide="instagram" class="w-4 h-4"></i>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
           </a>
           <a href="https://facebook.com" id="footer-facebook" target="_blank" rel="noopener"
              aria-label="Facebook" class="footer-icon-btn">
-            <i data-lucide="facebook" class="w-4 h-4"></i>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
           </a>
           <a href="https://wa.me/94724783406" id="footer-whatsapp-icon" target="_blank" rel="noopener"
              aria-label="WhatsApp" class="footer-icon-btn">
