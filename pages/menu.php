@@ -449,7 +449,7 @@ $menuData = [
 
           <!-- Price Estimator panel sticky on the right -->
           <div class="lg:col-span-4 flex flex-col gap-6">
-            <div class="sticky top-[140px] p-6 rounded-3xl border border-beige/50 bg-white shadow-cozy overflow-hidden relative">
+            <div class="sticky top-[140px] p-6 rounded-3xl border border-beige/50 bg-white shadow-cozy overflow-hidden">
               <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber/5 rounded-full blur-2xl"></div>
               
               <div class="flex items-center gap-3 mb-6">

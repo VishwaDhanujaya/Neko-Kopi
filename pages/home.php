@@ -253,7 +253,7 @@ require_once '../includes/header.php';
     </div>
 
     <!-- Food Grid (Halal) -->
-    <div id="home-food-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 home-menu-content hidden">
+    <div id="home-food-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 home-menu-content" style="display: none;">
       <?php $food = [
         ['name' => 'Korean Fried Chicken', 'desc' => 'Crispy, double-fried boneless chicken glazed with sweet, savory, and spicy Korean sauces.', 'price' => 'Rs. 1,500 (6 Pcs)', 'icon' => 'utensils', 'tag' => '100% Halal'],
         ['name' => 'Double Katsu Sando', 'desc' => 'Premium Japanese milk bread filled with crispy chicken katsu, fresh cabbage, and Bulldog sauce.', 'price' => 'Rs. 2,250', 'icon' => 'flame', 'tag' => 'Popular'],
@@ -318,8 +318,8 @@ require_once '../includes/header.php';
     inactiveGrid.style.transition = 'all 0.25s ease';
 
     setTimeout(() => {
-      inactiveGrid.classList.add('hidden');
-      activeGrid.classList.remove('hidden');
+      inactiveGrid.style.display = 'none';
+      activeGrid.style.display = 'grid';
       activeGrid.style.opacity = '0';
       activeGrid.style.transform = 'translateY(8px)';
 
