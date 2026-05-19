@@ -253,17 +253,6 @@ $menuData = [
       <i data-lucide="bike" class="w-4 h-4"></i>
       Order on Uber Eats
     </a>
-
-    <!-- Live Search Bar -->
-    <div class="reveal reveal-delay-3 max-w-md mx-auto relative mt-8">
-      <input type="text" id="menu-search-input" placeholder="Search dishes, drinks, ingredients..." 
-        class="w-full px-5 py-3.5 pl-12 pr-10 rounded-full border border-beige/60 bg-white text-sm text-text focus:outline-none focus:border-amber focus:ring-1 focus:ring-amber shadow-sm transition-all font-sans font-medium"
-        style="box-shadow: 0 4px 18px -4px rgba(122,85,51,0.06);">
-      <i data-lucide="search" class="w-4 h-4 text-brown-dark/40 absolute left-4.5 top-1/2 -translate-y-1/2"></i>
-      <button type="button" id="menu-search-clear" class="hidden w-5 h-5 rounded-full bg-cream-dark/60 text-brown hover:bg-cream-dark absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center transition-colors">
-        <i data-lucide="x" class="w-3 h-3"></i>
-      </button>
-    </div>
   </div>
 </section>
 
@@ -874,98 +863,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Live Search Filtering Logic
-  const searchInput = document.getElementById('menu-search-input');
-  const searchClear = document.getElementById('menu-search-clear');
-  const menuSections = document.querySelectorAll('.menu-section');
-
-  if (searchInput) {
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.toLowerCase().trim();
-
-      // Show or hide clear button
-      if (query.length > 0) {
-        searchClear.classList.remove('hidden');
-        searchClear.classList.add('flex');
-      } else {
-        searchClear.classList.add('hidden');
-        searchClear.classList.remove('flex');
-      }
-
-      menuSections.forEach(section => {
-        let hasVisibleItems = false;
-        
-        // Filter regular items
-        const regularItems = section.querySelectorAll('.menu-item');
-        regularItems.forEach(item => {
-          const nameEl = item.querySelector('.menu-item-name');
-          const descEl = item.querySelector('.menu-item-desc');
-          
-          const nameText = nameEl ? nameEl.textContent.toLowerCase() : '';
-          const descText = descEl ? descEl.textContent.toLowerCase() : '';
-          
-          if (nameText.includes(query) || descText.includes(query)) {
-            item.classList.remove('hidden');
-            hasVisibleItems = true;
-          } else {
-            item.classList.add('hidden');
-          }
-        });
-
-        // Filter coffee table rows (Espresso & Coffee)
-        const tableRows = section.querySelectorAll('table tbody tr');
-        tableRows.forEach(row => {
-          const nameEl = row.querySelector('td:first-child');
-          const nameText = nameEl ? nameEl.textContent.toLowerCase() : '';
-          
-          if (nameText.includes(query)) {
-            row.classList.remove('hidden');
-            hasVisibleItems = true;
-          } else {
-            row.classList.add('hidden');
-          }
-        });
-
-        // For custom builders (Custom Ramyeon), search by base and toppings ingredients!
-        const ramyeonForm = section.querySelector('#ramyeon-form');
-        if (ramyeonForm) {
-          const labels = ramyeonForm.querySelectorAll('label');
-          let matchedIngredient = false;
-          labels.forEach(label => {
-            const txt = label.textContent.toLowerCase();
-            if (txt.includes(query)) {
-              label.style.opacity = '1';
-              label.style.transform = 'scale(1)';
-              matchedIngredient = true;
-            } else if (query.length > 0) {
-              label.style.opacity = '0.25';
-              label.style.transform = 'scale(0.97)';
-            } else {
-              label.style.opacity = '1';
-              label.style.transform = 'scale(1)';
-            }
-          });
-          if (matchedIngredient || query.length === 0) {
-            hasVisibleItems = true;
-          }
-        }
-
-        // Show/hide section based on matches
-        if (hasVisibleItems || query.length === 0) {
-          section.classList.remove('hidden');
-        } else {
-          section.classList.add('hidden');
-        }
-      });
-    });
-
-    // Clear Search Action
-    searchClear.addEventListener('click', () => {
-      searchInput.value = '';
-      searchInput.dispatchEvent(new Event('input'));
-      searchInput.focus();
-    });
-  }
 });
 </script>
 
