@@ -1,0 +1,16 @@
+# Apache Rewrite Rules for Neko & Kopi Colombo Pretty URLs
+Options -MultiViews
+RewriteEngine On
+RewriteBase /NekoCafe/
+
+# 1. EXTERNAL REDIRECT: Do this FIRST.
+# Forces http://localhost/NekoCafe/ to visibly change to /home
+RewriteRule ^$ home [R=301,L]
+
+# 2. If the request is for a real file or directory, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 3. DYNAMIC ROUTE: Maps /NekoCafe/anything to pages/anything.php
+RewriteRule ^([^/]+)/?$ pages/$1.php [L]

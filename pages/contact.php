@@ -77,7 +77,14 @@ require_once '../includes/header.php';
             </div>
             <div>
               <p style="font-family:'Nunito',sans-serif;font-size:0.75rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;color:#A07850;margin-bottom:0.15rem;">Opening Hours</p>
-              <p class="text-sm font-semibold" style="color:#5C3D2E;">Wed – Sun: 9:00 AM – 9:00 PM (Closed Mon & Tue)</p>
+              <p class="text-sm font-semibold" style="color:#5C3D2E;margin-bottom:0.35rem;">Wed – Sun: 9:00 AM – 9:00 PM (Closed Mon & Tue)</p>
+              <div id="contact-status-badge" class="hidden items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wide transition-all duration-300">
+                <span class="w-1.5 h-1.5 rounded-full relative flex">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-1.5 w-1.5"></span>
+                </span>
+                <span id="contact-status-text"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -210,5 +217,117 @@ require_once '../includes/header.php';
 
   </div>
 </section>
+
+<!-- PREMIUM SUCCESS MODAL -->
+<div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-5 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+  <div class="bg-white rounded-[2.5rem] p-8 max-w-sm w-full text-center border border-beige/40 shadow-2xl relative transform scale-95 transition-all duration-300 flex flex-col items-center">
+    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-5" style="background:rgba(114,153,124,0.08);color:#72997C;">
+      <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+    </div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.45rem;color:#3A2A1E;margin-bottom:0.5rem;">Message Received!</h3>
+    <p style="font-family:'Nunito',sans-serif;font-size:0.85rem;color:#8B6850;line-height:1.65;margin-bottom:1.5rem;">
+      Thank you! Our café team and residents have safely received your note. We will curl back to you within 24 hours.
+    </p>
+    <button type="button" id="close-success-btn" class="btn-primary w-full justify-center">
+      Cozy Close
+    </button>
+  </div>
+</div>
+
+<!-- DYNAMIC CONTACT SCRIPTS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Dynamic Opening Hours Badge Check (Wed-Sun, 9AM-9PM Colombo Time)
+  function checkContactStatus() {
+    const badge = document.getElementById('contact-status-badge');
+    const text = document.getElementById('contact-status-text');
+    const dot = badge?.querySelector('.w-1.5.h-1.5 span:last-child');
+    const ping = badge?.querySelector('.animate-ping');
+    
+    if (!badge || !text) return;
+    
+    // Get current date/time in Colombo (UTC+5.30)
+    const now = new Date();
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const colomboTime = new Date(utc + (3600000 * 5.5));
+    
+    const day = colomboTime.getDay(); // 0: Sun, 1: Mon, 2: Tue, 3: Wed, 4: Thu, 5: Fri, 6: Sat
+    const hours = colomboTime.getHours();
+    const minutes = colomboTime.getMinutes();
+    const timeVal = hours + minutes / 60;
+    
+    const isOpenDay = (day === 3 || day === 4 || day === 5 || day === 6 || day === 0);
+    const isOpenHour = (timeVal >= 9 && timeVal < 21);
+    
+    badge.classList.remove('hidden');
+    badge.classList.add('inline-flex');
+    
+    if (isOpenDay && isOpenHour) {
+      badge.style.background = 'rgba(114,153,124,0.12)';
+      badge.style.color = '#4E7856';
+      badge.style.border = '1px solid rgba(114,153,124,0.25)';
+      if (dot) dot.style.background = '#4E7856';
+      if (ping) ping.style.background = '#4E7856';
+      text.textContent = 'Open Now';
+    } else {
+      badge.style.background = 'rgba(196,149,106,0.12)';
+      badge.style.color = '#A07850';
+      badge.style.border = '1px solid rgba(196,149,106,0.25)';
+      if (dot) dot.style.background = '#A07850';
+      if (ping) ping.style.background = '#A07850';
+      text.textContent = 'Closed Now';
+    }
+  }
+  
+  checkContactStatus();
+  setInterval(checkContactStatus, 30000);
+
+  // 2. Premium Form Submission Loader Overlay & Success Modal
+  const form = document.getElementById('contact-form');
+  const modal = document.getElementById('success-modal');
+  const closeBtn = document.getElementById('close-success-btn');
+  const submitBtn = document.getElementById('contact-submit');
+
+  if (form && modal && submitBtn) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Prevent double submission
+      if (submitBtn.disabled) return;
+      
+      // Show loading status inside the CTA button
+      const originalContent = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin flex-shrink-0"></span> Sending Message...';
+      
+      setTimeout(() => {
+        // Restore CTA state
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalContent;
+        
+        // Render success modal
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.querySelector('div').classList.remove('scale-95');
+        modal.querySelector('div').classList.add('scale-100');
+        
+        form.reset();
+      }, 1000);
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.querySelector('div').classList.remove('scale-100');
+      modal.querySelector('div').classList.add('scale-95');
+    });
+
+    // Close on overlay backdrop click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeBtn.click();
+      }
+    });
+  }
+});
+</script>
 
 <?php require_once '../includes/footer.php'; ?>

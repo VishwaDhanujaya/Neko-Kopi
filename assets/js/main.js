@@ -80,14 +80,40 @@ document.addEventListener('DOMContentLoaded', () => {
   /* 7. Contact form */
   const contactForm = document.getElementById('contact-form');
   const formMsg     = document.getElementById('form-message');
+  const modal       = document.getElementById('success-modal');
+  const submitBtn   = document.getElementById('contact-submit');
+
   contactForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (formMsg) {
-      formMsg.textContent = 'Thank you for your message! We\'ll get back to you within 24 hours.';
-      formMsg.classList.remove('hidden');
-      setTimeout(() => formMsg.classList.add('hidden'), 6000);
+    if (submitBtn) {
+      if (submitBtn.disabled) return;
+      const originalContent = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin flex-shrink-0"></span> Sending Message...';
+      
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalContent;
+        
+        if (modal) {
+          modal.classList.remove('opacity-0', 'pointer-events-none');
+          modal.querySelector('div').classList.remove('scale-95');
+          modal.querySelector('div').classList.add('scale-100');
+        } else if (formMsg) {
+          formMsg.textContent = 'Thank you for your message! We\'ll get back to you within 24 hours.';
+          formMsg.classList.remove('hidden');
+          setTimeout(() => formMsg.classList.add('hidden'), 6000);
+        }
+        contactForm.reset();
+      }, 1000);
+    } else {
+      if (formMsg) {
+        formMsg.textContent = 'Thank you for your message! We\'ll get back to you within 24 hours.';
+        formMsg.classList.remove('hidden');
+        setTimeout(() => formMsg.classList.add('hidden'), 6000);
+      }
+      contactForm.reset();
     }
-    contactForm.reset();
   });
 
   /* 8. Smooth scroll */

@@ -33,7 +33,7 @@ require_once '../includes/header.php';
       A home-like sanctuary where artisan coffee meets eight purring companions. Step in, slow down, stay a while.
     </p>
     <div class="reveal reveal-delay-3 flex flex-wrap justify-center gap-3">
-      <a href="<?= $base ?>/pages/menu.php" id="hero-cta-menu" class="btn-primary">
+      <a href="<?= $base ?>/menu" id="hero-cta-menu" class="btn-primary">
         <i data-lucide="utensils" class="w-4 h-4"></i>
         View Menu
       </a>
@@ -176,11 +176,11 @@ require_once '../includes/header.php';
       </div>
 
       <div class="flex flex-wrap gap-3 mt-2">
-        <a href="<?= $base ?>/pages/menu.php" id="about-cta-menu" class="btn-primary">
+        <a href="<?= $base ?>/menu" id="about-cta-menu" class="btn-primary">
           <i data-lucide="utensils" class="w-4 h-4"></i>
           Explore Our Menu
         </a>
-        <a href="<?= $base ?>/pages/contact.php" id="about-cta-contact" class="btn-outline">
+        <a href="<?= $base ?>/contact" id="about-cta-contact" class="btn-outline">
           <i data-lucide="map-pin" class="w-4 h-4"></i>
           Find Us
         </a>
@@ -243,7 +243,7 @@ require_once '../includes/header.php';
             style="border-top:1px solid rgba(196,149,106,0.18);">
             <span
               style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#A07850;font-weight:600;"><?= $d['price'] ?></span>
-            <a href="<?= $base ?>/pages/menu.php" class="flex items-center gap-1 text-xs font-bold"
+            <a href="<?= $base ?>/menu" class="flex items-center gap-1 text-xs font-bold"
               style="color:#72997C;font-family:'Nunito',sans-serif;text-decoration:none;">
               Full menu <i data-lucide="arrow-right" class="w-3 h-3"></i>
             </a>
@@ -278,7 +278,7 @@ require_once '../includes/header.php';
             style="border-top:1px solid rgba(196,149,106,0.18);">
             <span
               style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#A07850;font-weight:600;"><?= $f['price'] ?></span>
-            <a href="<?= $base ?>/pages/menu.php" class="flex items-center gap-1 text-xs font-bold"
+            <a href="<?= $base ?>/menu" class="flex items-center gap-1 text-xs font-bold"
               style="color:#72997C;font-family:'Nunito',sans-serif;text-decoration:none;">
               Full menu <i data-lucide="arrow-right" class="w-3 h-3"></i>
             </a>
@@ -288,7 +288,7 @@ require_once '../includes/header.php';
     </div>
 
     <div class="text-center reveal">
-      <a href="<?= $base ?>/pages/menu.php" id="featured-cta-menu" class="btn-primary">
+      <a href="<?= $base ?>/menu" id="featured-cta-menu" class="btn-primary">
         <i data-lucide="utensils" class="w-4 h-4"></i>
         See Full Menu
       </a>
@@ -354,7 +354,7 @@ require_once '../includes/header.php';
             Cat adoption days, live acoustic evenings, art workshops — there's always a warm reason to visit Neko &amp;
             Kopi.
           </p>
-          <a href="<?= $base ?>/pages/events.php" id="events-teaser-cta" class="btn-amber self-start">
+          <a href="<?= $base ?>/events" id="events-teaser-cta" class="btn-amber self-start">
             <i data-lucide="calendar" class="w-4 h-4"></i>
             View All Events
           </a>
@@ -381,6 +381,16 @@ require_once '../includes/header.php';
     <p class="section-subheading mx-auto mb-3">
       319/4, 05 Nawala Rd, Colombo 00500, Sri Lanka
     </p>
+    <!-- Real-time Pulsing Opening Status Badge -->
+    <div class="flex justify-center mb-4 font-sans">
+      <div id="cafe-status-badge" class="hidden items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wide transition-all duration-300">
+        <span class="w-2 h-2 rounded-full relative flex">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2"></span>
+        </span>
+        <span id="cafe-status-text"></span>
+      </div>
+    </div>
     <p style="font-family:'Nunito',sans-serif;font-size:0.9rem;color:#A07850;margin-bottom:2.5rem;">
       Open Wed – Sun &middot; 9:00 AM – 9:00 PM &middot; CLOSED Monday & Tuesday
     </p>
@@ -400,6 +410,91 @@ require_once '../includes/header.php';
       </a>
     </div>
   </div>
-</section>
+<!-- INTERACTIVE UX ENHANCEMENTS SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Mouse Parallax effect on Hero background (Desktop only)
+  const hero = document.getElementById('hero');
+  const heroBg = document.getElementById('hero-bg');
+  
+  if (hero && heroBg && window.innerWidth > 768) {
+    heroBg.style.transition = 'transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    
+    hero.addEventListener('mousemove', (e) => {
+      const x = (window.innerWidth / 2 - e.clientX) / 80;
+      const y = (window.innerHeight / 2 - e.clientY) / 80;
+      heroBg.style.transform = `translate(${x}px, ${y}px) scale(1.06)`;
+    });
+    
+    hero.addEventListener('mouseleave', () => {
+      heroBg.style.transform = 'translate(0px, 0px) scale(1)';
+    });
+  }
+
+  // 2. Real-time Colombo Opening Status Check (Wed-Sun, 9AM-9PM Colombo Time)
+  function checkCafeStatus() {
+    const statusBadge = document.getElementById('cafe-status-badge');
+    const statusText = document.getElementById('cafe-status-text');
+    const dot = statusBadge?.querySelector('.w-2.h-2 span:last-child');
+    const ping = statusBadge?.querySelector('.animate-ping');
+    
+    if (!statusBadge || !statusText) return;
+    
+    // Get current date/time in Colombo (UTC+5.30)
+    const now = new Date();
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const colomboTime = new Date(utc + (3600000 * 5.5));
+    
+    const day = colomboTime.getDay(); // 0: Sun, 1: Mon, 2: Tue, 3: Wed, 4: Thu, 5: Fri, 6: Sat
+    const hours = colomboTime.getHours();
+    const minutes = colomboTime.getMinutes();
+    const timeVal = hours + minutes / 60;
+    
+    // Cafe open Wed (3) through Sun (0) between 9:00 AM (9) and 9:00 PM (21)
+    const isOpenDay = (day === 3 || day === 4 || day === 5 || day === 6 || day === 0);
+    const isOpenHour = (timeVal >= 9 && timeVal < 21);
+    
+    statusBadge.classList.remove('hidden');
+    statusBadge.classList.add('inline-flex');
+    
+    if (isOpenDay && isOpenHour) {
+      statusBadge.style.background = 'rgba(114,153,124,0.12)';
+      statusBadge.style.color = '#4E7856';
+      statusBadge.style.border = '1px solid rgba(114,153,124,0.3)';
+      if (dot) dot.style.background = '#4E7856';
+      if (ping) ping.style.background = '#4E7856';
+      statusText.textContent = 'OPEN NOW — Come snuggle with cats!';
+    } else {
+      statusBadge.style.background = 'rgba(196,149,106,0.12)';
+      statusBadge.style.color = '#A07850';
+      statusBadge.style.border = '1px solid rgba(196,149,106,0.3)';
+      if (dot) dot.style.background = '#A07850';
+      if (ping) ping.style.background = '#A07850';
+      
+      let reopeningMsg = 'CLOSED NOW — Reopening Wednesday at 9:00 AM';
+      if (day === 3 || day === 4 || day === 5 || day === 6) {
+        if (timeVal < 9) {
+          reopeningMsg = 'CLOSED NOW — Opening today at 9:00 AM!';
+        } else if (timeVal >= 21) {
+          reopeningMsg = 'CLOSED NOW — Opening tomorrow at 9:00 AM!';
+        }
+      } else if (day === 0) {
+        if (timeVal < 9) {
+          reopeningMsg = 'CLOSED NOW — Opening today at 9:00 AM!';
+        } else if (timeVal >= 21) {
+          reopeningMsg = 'CLOSED NOW — Reopening Wednesday at 9:00 AM';
+        }
+      } else {
+        // Monday or Tuesday
+        reopeningMsg = 'CLOSED NOW — Reopening Wednesday at 9:00 AM';
+      }
+      statusText.textContent = reopeningMsg;
+    }
+  }
+
+  checkCafeStatus();
+  setInterval(checkCafeStatus, 30000);
+});
+</script>
 
 <?php require_once '../includes/footer.php'; ?>
