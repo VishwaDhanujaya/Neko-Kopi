@@ -3,6 +3,18 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* 0. Page Preloader Dismissal */
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.classList.add('fade-out');
+    });
+    // Fallback: Snappy timeout in case assets are cached
+    setTimeout(() => {
+      preloader.classList.add('fade-out');
+    }, 800);
+  }
+
   /* 1. Init Lucide Icons */
   if (typeof lucide !== 'undefined') lucide.createIcons();
 

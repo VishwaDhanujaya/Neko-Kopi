@@ -42,6 +42,15 @@ $base = '/NekoCafe';
 
 <body>
 
+  <!-- LUXURY PAGE PRELOADER -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-spinner">
+      <div class="preloader-circle"></div>
+      <img class="preloader-logo" src="<?= $base ?>/assets/images/logo.png" alt="Logo">
+    </div>
+    <span class="font-serif text-xs tracking-wider text-[#3A2A1E] font-semibold opacity-70 animate-pulse">Neko &amp; Kopi...</span>
+  </div>
+
   <!-- NAVBAR -->
   <header id="navbar" class="nav-glass fixed top-0 left-0 right-0 z-50">
     <nav class="max-w-6xl mx-auto px-5 sm:px-8 h-[62px] flex items-center justify-between gap-6">
