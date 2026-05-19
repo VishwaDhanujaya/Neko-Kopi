@@ -1,0 +1,13 @@
+# Ignored secure credentials configuration
+/config.php
+
+# Package Dependencies
+/node_modules/
+/vendor/
+
+# Local Dev Sandbox Files
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

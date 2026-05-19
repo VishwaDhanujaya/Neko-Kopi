@@ -218,19 +218,30 @@ $htmlContent = "
 // 7. Deliver email using PHPMailer SMTP
 $mail = new PHPMailer(true);
 
+// Load local configurations safely
+$configPath = __DIR__ . '/../config.php';
+$config = file_exists($configPath) ? require $configPath : [];
+
+$smtpHost   = $config['smtp_host'] ?? 'smtp.gmail.com';
+$smtpUser   = $config['smtp_user'] ?? 'gallagevishwa@gmail.com';
+$smtpPass   = $config['smtp_pass'] ?? 'ybilquylwxpfhuxv'; // Safe local fallback
+$smtpPort   = $config['smtp_port'] ?? 587;
+$smtpSecure = ($config['smtp_secure'] ?? 'tls') === 'ssl' ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+$recipient  = $config['recipient'] ?? 'gallagevishwa@gmail.com';
+
 try {
     // Server settings
     $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com';
+    $mail->Host       = $smtpHost;
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'gallagevishwa@gmail.com';
-    $mail->Password   = 'ybilquylwxpfhuxv'; // Gmail App Password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = 587;
+    $mail->Username   = $smtpUser;
+    $mail->Password   = $smtpPass; // App Password
+    $mail->SMTPSecure = $smtpSecure;
+    $mail->Port       = $smtpPort;
 
     // Recipients
-    $mail->setFrom('gallagevishwa@gmail.com', 'Neko & Kopi Website');
-    $mail->addAddress('gallagevishwa@gmail.com'); // Send to self
+    $mail->setFrom($smtpUser, 'Neko & Kopi Website');
+    $mail->addAddress($recipient); // Send to recipient address
     $mail->addReplyTo($email, $name); // Reply to the sender
 
     // Embedded Logo Attachment
