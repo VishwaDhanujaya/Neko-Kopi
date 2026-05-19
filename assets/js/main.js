@@ -81,6 +81,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
         }
+
+        // Smoothly scroll to the correct Category Showcase header (offsetting both header and sticky category bar)
+        setTimeout(() => {
+          if (target === 'all') {
+            const tabsBar = document.getElementById('menu-tabs-bar');
+            if (tabsBar) {
+              const navbarHeight = 62;
+              const targetOffset = tabsBar.offsetTop - navbarHeight;
+              window.scrollTo({
+                top: targetOffset,
+                behavior: 'smooth'
+              });
+            }
+          } else {
+            const targetSection = document.getElementById('section-' + target);
+            if (targetSection) {
+              const navbarHeight = 62;
+              const tabsBarHeight = 52;
+              const targetOffset = targetSection.offsetTop - (navbarHeight + tabsBarHeight);
+              window.scrollTo({
+                top: targetOffset,
+                behavior: 'smooth'
+              });
+            }
+          }
+        }, 50);
       });
     });
   }
