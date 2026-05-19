@@ -136,6 +136,19 @@ $events = [
           <h2 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:#3A2A1E;line-height:1.3;"><?=$event['title']?></h2>
 
           <p style="font-family:'Nunito',sans-serif;font-size:0.855rem;color:#8B6850;line-height:1.65;flex:1;"><?=$event['desc']?></p>
+
+          <!-- Inquire / Book Action CTA (WhatsApp Integration) -->
+          <div class="pt-3.5 border-t border-beige/20 mt-auto">
+            <a href="https://wa.me/94724783406?text=Hi%20Neko%20%26%20Kopi!%20I'm%20interested%20in%20joining%20the%20<?=urlencode($event['title'])?>%20on%20<?=urlencode($event['date'])?>."
+               target="_blank" rel="noopener"
+               class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold text-center transition-all duration-200"
+               style="background:rgba(114,153,124,0.08);color:#4A6E56;font-family:'Nunito',sans-serif;"
+               onmouseover="this.style.background='rgba(114,153,124,0.16)'"
+               onmouseout="this.style.background='rgba(114,153,124,0.08)'">
+              <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+              Inquire / Book Spot
+            </a>
+          </div>
         </div>
       </article>
       <?php endforeach; ?>

@@ -43,11 +43,27 @@ document.addEventListener('DOMContentLoaded', () => {
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         const target = tab.dataset.category;
+        
+        // Skip for homepage tab selector, which uses switchHomeMenu inline function
+        if (tab.classList.contains('home-menu-tab')) return;
+
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
+        
         sections.forEach(sec => {
           const match = target === 'all' || sec.dataset.category === target;
-          sec.style.display = match ? '' : 'none';
+          if (match) {
+            sec.style.display = '';
+            sec.style.opacity = '0';
+            sec.style.transform = 'translateY(12px)';
+            sec.style.transition = 'all 0.35s ease';
+            // Force reflow
+            sec.offsetHeight;
+            sec.style.opacity = '1';
+            sec.style.transform = 'translateY(0)';
+          } else {
+            sec.style.display = 'none';
+          }
         });
       });
     });
@@ -81,5 +97,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+
+  /* 9. Floating Back-to-Top Button */
+  const backToTop = document.getElementById('back-to-top');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTop.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+        backToTop.classList.add('translate-y-0', 'opacity-100');
+      } else {
+        backToTop.classList.remove('translate-y-0', 'opacity-100');
+        backToTop.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+      }
+    }, { passive: true });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
 });

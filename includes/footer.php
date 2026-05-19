@@ -62,6 +62,7 @@ $base = '/NekoCafe';
           <?php $navItems = [
             ['Home',           "$base/pages/home.php",    'home'],
             ['Menu',           "$base/pages/menu.php",    'utensils'],
+            ['Gallery',        "$base/pages/gallery.php", 'image'],
             ['Events',         "$base/pages/events.php",  'calendar'],
             ['Contact Us',     "$base/pages/contact.php", 'mail'],
             ['Order on Uber Eats', 'https://www.ubereats.com', 'bike'],
@@ -86,7 +87,7 @@ $base = '/NekoCafe';
             ['map-pin',   '319/4, 05 Nawala Rd, Colombo 00500, Sri Lanka', null, 'footer-address'],
             ['phone',     '+94 72 478 3406', 'tel:+94724783406', 'footer-phone'],
             ['mail',      'nekoteammarketing@gmail.com', 'mailto:nekoteammarketing@gmail.com', 'footer-email'],
-            ['clock',     'Mon – Sun: 9:00 AM – 9:00 PM', null, 'footer-hours'],
+            ['clock',     'Wed – Sun: 9:00 AM – 9:00 PM (Closed Mon & Tue)', null, 'footer-hours'],
           ];
           foreach ($contactItems as [$icon, $text, $href, $id]): ?>
           <div class="flex items-start gap-2.5">
@@ -124,6 +125,11 @@ $base = '/NekoCafe';
     </div>
   </div>
 </footer>
+
+<!-- BACK TO TOP BUTTON -->
+<button id="back-to-top" aria-label="Back to top" class="fixed bottom-6 right-6 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 translate-y-12 opacity-0 pointer-events-none hover:scale-105 z-40" style="background:#72997C; color:#fff; border:1px solid rgba(255,255,255,0.1);">
+  <i data-lucide="arrow-up" class="w-5 h-5"></i>
+</button>
 
 <script src="/NekoCafe/assets/js/main.js"></script>
 </body>

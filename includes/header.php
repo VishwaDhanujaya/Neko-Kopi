@@ -53,6 +53,7 @@ $base    = '/NekoCafe';
         $links = [
           'home'    => ['Home',    "$base/pages/home.php"],
           'menu'    => ['Menu',    "$base/pages/menu.php"],
+          'gallery' => ['Gallery', "$base/pages/gallery.php"],
           'events'  => ['Events',  "$base/pages/events.php"],
           'contact' => ['Contact', "$base/pages/contact.php"],
         ];

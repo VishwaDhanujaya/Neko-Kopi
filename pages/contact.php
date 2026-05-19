@@ -77,7 +77,7 @@ require_once '../includes/header.php';
             </div>
             <div>
               <p style="font-family:'Nunito',sans-serif;font-size:0.75rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;color:#A07850;margin-bottom:0.15rem;">Opening Hours</p>
-              <p class="text-sm font-semibold" style="color:#5C3D2E;">Mon – Sun: 9:00 AM – 9:00 PM</p>
+              <p class="text-sm font-semibold" style="color:#5C3D2E;">Wed – Sun: 9:00 AM – 9:00 PM (Closed Mon & Tue)</p>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@ require_once '../includes/header.php';
           Order on Uber Eats
         </a>
 
-        <a href="https://maps.google.com/?q=319/4+Nawala+Rd+Colombo+00500" id="contact-maps-btn" target="_blank" rel="noopener" class="btn-outline justify-center">
+        <a href="https://maps.app.goo.gl/qPYiibj1WKDyJf3J6" id="contact-maps-btn" target="_blank" rel="noopener" class="btn-outline justify-center">
           <i data-lucide="map" class="w-4 h-4"></i>
           Open in Google Maps
         </a>
@@ -195,7 +195,7 @@ require_once '../includes/header.php';
           <iframe
             id="contact-map"
             title="Neko & Kopi location on Google Maps"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.0!2d79.8878!3d6.9013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259a45d8b1fd7%3A0x0!2s319%2F4%20Nawala%20Rd%2C%20Colombo%2000500%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.0148043707204!2d79.88710209999999!3d6.8888296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25bb7481a2109%3A0x2368f512f0089250!2sNeko%20and%20Kopi!5e0!3m2!1sen!2slk!4v1779166252915!5m2!1sen!2slk"
             width="100%"
             height="320"
             style="border:0;"

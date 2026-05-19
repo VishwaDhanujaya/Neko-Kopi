@@ -10,6 +10,7 @@ $menuData = [
     'label' => 'Snacks',
     'icon'  => 'utensils',
     'desc'  => 'Delectable street bites, crispy finger foods, and traditional Japanese-style snacks to accompany your drinks.',
+    'image' => 'menu_sando.png',
     'items' => [
       [
         'name' => 'Korean Fried Chicken',
@@ -75,6 +76,7 @@ $menuData = [
     'label' => 'Stew & Sando',
     'icon'  => 'flame',
     'desc'  => 'Cozy and comforting Korean tofu stews and premium Japanese-style sandwiches (Sandos).',
+    'image' => 'menu_sando.png',
     'items' => [
       [
         'name' => 'Korean Soft Tofu Stew',
@@ -94,6 +96,7 @@ $menuData = [
     'label' => 'Japanese Curry',
     'icon'  => 'soup',
     'desc'  => 'Rich, thick, and highly aromatic golden Japanese curry served over steaming rice.',
+    'image' => 'menu_curry.png',
     'items' => [
       [
         'name' => 'Japanese Curry Rice',
@@ -111,6 +114,7 @@ $menuData = [
     'label' => 'Custom Ramyeon',
     'icon'  => 'chef-hat',
     'desc'  => 'Create your own signature bowl of steaming, comforting Korean instant ramyeon with customizable bases, spices, broth, and premium toppings.',
+    'image' => 'menu_ramyeon.png',
     'custom' => true,
     'sections' => [
       'A - Select the Base' => [
@@ -152,6 +156,7 @@ $menuData = [
     'label' => 'Beverages',
     'icon'  => 'coffee',
     'desc'  => 'A complete selection of warming teas, fresh juices, creamy milkshakes, and premium, custom-roasted espresso drinks.',
+    'image' => 'menu_matcha.png',
     'subsections' => [
       'Tea & Other' => [
         ['name' => 'Plain Tea', 'price' => 'Rs. 200'],
@@ -216,6 +221,7 @@ $menuData = [
     'label' => 'Desserts',
     'icon'  => 'cake',
     'desc'  => 'Beautiful and indulgent Japanese-inspired sweets to complete your perfect café experience.',
+    'image' => 'menu_dessert.png',
     'items' => [
       ['name' => 'Cookie Sando', 'desc' => 'Creamy, chilled ice cream sandwiched between two giant, freshly-baked chewy cookies.', 'price' => 'Rs. 1,000'],
       ['name' => 'Seasonal Mochi with Ice Cream (2 PCS)', 'desc' => 'Soft, sweet glutinous rice mochi filled with premium ice cream.', 'price' => 'Rs. 1,620'],
@@ -237,15 +243,27 @@ $menuData = [
       </span>
     </div>
     <h1 class="reveal reveal-delay-1 section-heading mb-4">Our Menu</h1>
-    <p class="reveal reveal-delay-2 section-subheading mx-auto mb-8">
+    <p class="reveal reveal-delay-2 section-subheading mx-auto mb-6">
       Every item is crafted with premium ingredients and served with café love.
       Order in-café or get it delivered straight to your doorstep.
     </p>
+
     <a href="https://www.ubereats.com" id="menu-header-uber" target="_blank" rel="noopener"
        class="reveal reveal-delay-3 btn-amber inline-flex">
       <i data-lucide="bike" class="w-4 h-4"></i>
       Order on Uber Eats
     </a>
+
+    <!-- Live Search Bar -->
+    <div class="reveal reveal-delay-3 max-w-md mx-auto relative mt-8">
+      <input type="text" id="menu-search-input" placeholder="Search dishes, drinks, ingredients..." 
+        class="w-full px-5 py-3.5 pl-12 pr-10 rounded-full border border-beige/60 bg-white text-sm text-text focus:outline-none focus:border-amber focus:ring-1 focus:ring-amber shadow-sm transition-all font-sans font-medium"
+        style="box-shadow: 0 4px 18px -4px rgba(122,85,51,0.06);">
+      <i data-lucide="search" class="w-4 h-4 text-brown-dark/40 absolute left-4.5 top-1/2 -translate-y-1/2"></i>
+      <button type="button" id="menu-search-clear" class="hidden w-5 h-5 rounded-full bg-cream-dark/60 text-brown hover:bg-cream-dark absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center transition-colors">
+        <i data-lucide="x" class="w-3 h-3"></i>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -273,21 +291,43 @@ $menuData = [
   <div class="menu-section mb-20" data-category="<?=$key?>" id="section-<?=$key?>">
 
     <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-center gap-4 justify-between mb-10 reveal">
-      <div class="flex items-center gap-3">
-        <div class="icon-box icon-box-lg icon-box-amber">
-          <i data-lucide="<?=$section['icon']?>" class="w-5 h-5"></i>
+    <div class="mb-10 reveal">
+      <?php if (!empty($section['image'])): ?>
+        <!-- Category Banner -->
+        <div class="mb-8 rounded-3xl overflow-hidden h-48 md:h-64 relative shadow-sm" style="border: 1px solid rgba(196,149,106,0.15);">
+          <img src="<?=$base?>/assets/images/<?=$section['image']?>" alt="<?=$section['label']?>" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent flex items-end p-6 md:p-8">
+            <div class="flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center bg-white/95 text-sage shadow-md">
+                <i data-lucide="<?=$section['icon']?>" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-white/80 font-bold uppercase tracking-wider text-[10px]" style="font-family:'Nunito',sans-serif;">Category Showcase</span>
+                <h2 class="font-serif text-2xl md:text-3xl text-white font-bold leading-none mt-1"><?=$section['label']?></h2>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h2 class="font-serif text-2xl md:text-3xl text-text font-bold"><?=$section['label']?></h2>
-          <div class="divider mt-1.5"></div>
-        </div>
-      </div>
-      <?php if (!empty($section['desc'])): ?>
-        <p class="text-xs md:text-sm text-text-light max-w-md font-sans leading-relaxed">
-          <?=$section['desc']?>
-        </p>
       <?php endif; ?>
+
+      <div class="flex flex-col md:flex-row md:items-center gap-4 justify-between <?= !empty($section['image']) ? 'px-2' : '' ?>">
+        <?php if (empty($section['image'])): ?>
+          <div class="flex items-center gap-3">
+            <div class="icon-box icon-box-lg icon-box-amber">
+              <i data-lucide="<?=$section['icon']?>" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h2 class="font-serif text-2xl md:text-3xl text-text font-bold"><?=$section['label']?></h2>
+              <div class="divider mt-1.5"></div>
+            </div>
+          </div>
+        <?php endif; ?>
+        <?php if (!empty($section['desc'])): ?>
+          <p class="text-xs md:text-sm text-text-light max-w-xl font-sans leading-relaxed <?= empty($section['image']) ? 'max-w-md' : '' ?>">
+            <?=$section['desc']?>
+          </p>
+        <?php endif; ?>
+      </div>
     </div>
 
     <!-- RENDER CUSTOM RAMYEON BUILDER (CALCULATOR UI/UX) -->
@@ -833,6 +873,99 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("Failed to copy recipe. Please write it down!");
     });
   });
+
+  // Live Search Filtering Logic
+  const searchInput = document.getElementById('menu-search-input');
+  const searchClear = document.getElementById('menu-search-clear');
+  const menuSections = document.querySelectorAll('.menu-section');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      // Show or hide clear button
+      if (query.length > 0) {
+        searchClear.classList.remove('hidden');
+        searchClear.classList.add('flex');
+      } else {
+        searchClear.classList.add('hidden');
+        searchClear.classList.remove('flex');
+      }
+
+      menuSections.forEach(section => {
+        let hasVisibleItems = false;
+        
+        // Filter regular items
+        const regularItems = section.querySelectorAll('.menu-item');
+        regularItems.forEach(item => {
+          const nameEl = item.querySelector('.menu-item-name');
+          const descEl = item.querySelector('.menu-item-desc');
+          
+          const nameText = nameEl ? nameEl.textContent.toLowerCase() : '';
+          const descText = descEl ? descEl.textContent.toLowerCase() : '';
+          
+          if (nameText.includes(query) || descText.includes(query)) {
+            item.classList.remove('hidden');
+            hasVisibleItems = true;
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+
+        // Filter coffee table rows (Espresso & Coffee)
+        const tableRows = section.querySelectorAll('table tbody tr');
+        tableRows.forEach(row => {
+          const nameEl = row.querySelector('td:first-child');
+          const nameText = nameEl ? nameEl.textContent.toLowerCase() : '';
+          
+          if (nameText.includes(query)) {
+            row.classList.remove('hidden');
+            hasVisibleItems = true;
+          } else {
+            row.classList.add('hidden');
+          }
+        });
+
+        // For custom builders (Custom Ramyeon), search by base and toppings ingredients!
+        const ramyeonForm = section.querySelector('#ramyeon-form');
+        if (ramyeonForm) {
+          const labels = ramyeonForm.querySelectorAll('label');
+          let matchedIngredient = false;
+          labels.forEach(label => {
+            const txt = label.textContent.toLowerCase();
+            if (txt.includes(query)) {
+              label.style.opacity = '1';
+              label.style.transform = 'scale(1)';
+              matchedIngredient = true;
+            } else if (query.length > 0) {
+              label.style.opacity = '0.25';
+              label.style.transform = 'scale(0.97)';
+            } else {
+              label.style.opacity = '1';
+              label.style.transform = 'scale(1)';
+            }
+          });
+          if (matchedIngredient || query.length === 0) {
+            hasVisibleItems = true;
+          }
+        }
+
+        // Show/hide section based on matches
+        if (hasVisibleItems || query.length === 0) {
+          section.classList.remove('hidden');
+        } else {
+          section.classList.add('hidden');
+        }
+      });
+    });
+
+    // Clear Search Action
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input'));
+      searchInput.focus();
+    });
+  }
 });
 </script>
 
