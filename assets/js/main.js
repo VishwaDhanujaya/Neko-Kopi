@@ -3,18 +3,6 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* 0. Page Preloader Dismissal */
-  const preloader = document.getElementById('preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.classList.add('fade-out');
-    });
-    // Fallback: Snappy timeout in case assets are cached
-    setTimeout(() => {
-      preloader.classList.add('fade-out');
-    }, 800);
-  }
-
   /* 1. Init Lucide Icons */
   if (typeof lucide !== 'undefined') lucide.createIcons();
 
@@ -82,12 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const match = target === 'all' || sec.dataset.category === target;
             if (match) {
               sec.style.display = '';
+              sec.style.willChange = 'transform, opacity';
               sec.style.opacity = '0';
-              sec.style.transform = 'translateY(12px)';
-              sec.style.transition = 'all 0.35s ease';
+              sec.style.transform = 'translateY(16px) scale(0.985)';
+              sec.style.transition = 'opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+              
               sec.offsetHeight; // Force reflow
+              
               sec.style.opacity = '1';
-              sec.style.transform = 'translateY(0)';
+              sec.style.transform = 'translateY(0) scale(1)';
+              
+              // Clean up will-change after transition finishes to optimize GPU memory
+              setTimeout(() => {
+                sec.style.willChange = '';
+              }, 450);
             } else {
               sec.style.display = 'none';
             }
@@ -122,6 +118,38 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  /* 5b. Horizontal tab swiper dynamic vignettes */
+  const scrollContainers = document.querySelectorAll('.tab-scroll-container');
+  scrollContainers.forEach(container => {
+    const scroller = container.querySelector('.overflow-x-auto');
+    if (!scroller) return;
+
+    function updateVignettes() {
+      const scrollLeft = scroller.scrollLeft;
+      const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
+      
+      // Reset scroll position if container no longer overflows to keep desktop layouts centered
+      if (maxScrollLeft <= 0 && scroller.scrollLeft > 0) {
+        scroller.scrollLeft = 0;
+      }
+      
+      const currentScrollLeft = scroller.scrollLeft;
+      
+      // Toggle left fade-in vignette if scrolled right by more than 4px
+      container.classList.toggle('show-left', currentScrollLeft > 4);
+      
+      // Toggle right fade-in vignette if still has content to scroll by more than 4px
+      container.classList.toggle('show-right', currentScrollLeft < maxScrollLeft - 4);
+    }
+
+    scroller.addEventListener('scroll', updateVignettes, { passive: true });
+    window.addEventListener('resize', updateVignettes, { passive: true });
+    
+    // Evaluate after content fully renders/font finishes loading
+    setTimeout(updateVignettes, 150);
+    updateVignettes();
+  });
 
   /* 6. Hero parallax */
   const heroBg = document.getElementById('hero-bg');

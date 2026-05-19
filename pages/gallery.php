@@ -109,8 +109,8 @@ $galleryItems = [
 </section>
 
 <!-- STICKY GALLERY TABS -->
-<div class="sticky top-[62px] z-40" style="background:rgba(251,251,250,0.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,0.045);" id="gallery-tabs-bar">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 flex justify-center gap-2.5 overflow-x-auto scrollbar-hide">
+<div class="sticky top-[62px] z-40 tab-scroll-container" style="background:rgba(251,251,250,0.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,0.045);" id="gallery-tabs-bar">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 flex md:justify-center gap-2.5 overflow-x-auto scrollbar-hide">
     <button id="gtab-all" class="cat-tab active" data-filter="all">
       <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
       All Photos
