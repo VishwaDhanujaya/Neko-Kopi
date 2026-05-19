@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const formData = new FormData(contactForm);
       
-      fetch('/NekoCafe/send_email', {
+      fetch('send_email', {
         method: 'POST',
         body: formData
       })

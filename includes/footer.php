@@ -120,6 +120,6 @@ $base = '/NekoCafe';
   <i data-lucide="arrow-up" class="w-5 h-5"></i>
 </button>
 
-<script src="/NekoCafe/assets/js/main.js"></script>
+<script src="<?= $base ?>/assets/js/main.js"></script>
 </body>
 </html>
