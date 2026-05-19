@@ -56,7 +56,7 @@ $base = '/NekoCafe';
       </div>
 
       <!-- Links -->
-      <div>
+      <div class="hidden md:block">
         <p style="font-family:'Playfair Display',serif;font-size:1rem;color:#EDE0CC;margin-bottom:1.25rem;">Quick Links</p>
         <ul class="flex flex-col gap-2.5">
           <?php $navItems = [

@@ -172,6 +172,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const filterValue = tab.getAttribute('data-filter');
 
+      // 1.5 Smoothly scroll to the start of the gallery content grid
+      const contentSection = document.getElementById('gallery-content-section');
+      if (contentSection) {
+        const navbarHeight = 62;
+        const tabsBarHeight = 50;
+        const targetOffset = contentSection.offsetTop - (navbarHeight + tabsBarHeight);
+        window.scrollTo({
+          top: targetOffset,
+          behavior: 'smooth'
+        });
+      }
+
       // 2. Fade grid out for transition reflow
       grid.style.opacity = '0';
       grid.style.transform = 'translateY(10px)';
