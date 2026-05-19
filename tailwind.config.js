@@ -9,18 +9,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cream:      '#FDF6EC',
-        'cream-dark': '#F5EAD7',
-        beige:      '#EDE0CC',
-        sage:       '#8FAF8A',
-        'sage-dark':'#6A8C65',
-        'sage-light':'#B8D4B4',
-        brown:      '#8B6347',
-        'brown-dark':'#5C3D2E',
-        amber:      '#D4A96A',
-        'amber-light':'#E8C99A',
-        text:       '#3D2B1F',
-        'text-light':'#7A5C4A',
+        cream:      '#FAF6F0',
+        'cream-dark': '#F3ECE0',
+        beige:      '#E6DCD2',
+        sage:       '#72997C',
+        'sage-dark':'#53735B',
+        'sage-light':'#EAF1EC',
+        brown:      '#3A2A1E',
+        'brown-dark':'#271C14',
+        amber:      '#C4956A',
+        'amber-light':'#F7EFE5',
+        text:       '#3A2A1E',
+        'text-light':'#8B6850',
       },
       fontFamily: {
         serif:  ['Playfair Display', 'Georgia', 'serif'],
@@ -32,9 +32,9 @@ module.exports = {
         '4xl': '2rem',
       },
       boxShadow: {
-        'cozy':   '0 4px 24px rgba(139,99,71,0.12)',
-        'cozy-lg':'0 12px 48px rgba(139,99,71,0.18)',
-        'warm':   '0 2px 12px rgba(212,169,106,0.25)',
+        'cozy':   '0 8px 30px rgba(0,0,0,0.04)',
+        'cozy-lg':'0 20px 50px rgba(0,0,0,0.08)',
+        'warm':   '0 4px 20px rgba(0,0,0,0.03)',
       },
       backgroundImage: {
         'hero-pattern': "url('../images/hero.png')",

@@ -701,6 +701,7 @@ $menuData = [
   </div>
   <?php endforeach; ?>
 
+  </div>
 </section>
 
 <!-- UBER EATS BANNER -->

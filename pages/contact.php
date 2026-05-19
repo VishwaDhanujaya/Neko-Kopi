@@ -118,7 +118,7 @@ require_once '../includes/header.php';
       <div class="card p-6 reveal reveal-delay-2">
         <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:#3A2A1E;margin-bottom:1rem;">Follow Our Cats</h3>
         <div class="grid grid-cols-3 gap-2">
-          <a href="https://instagram.com" id="contact-instagram" target="_blank" rel="noopener"
+          <a href="https://www.instagram.com/nekocafelk/?hl=en" id="contact-instagram" target="_blank" rel="noopener"
              class="flex flex-col items-center gap-1.5 py-3.5 rounded-2xl bg-black/[0.03] hover:bg-black/[0.06] transition-all duration-250 hover:-translate-y-0.5 hover:shadow-sm">
             <svg class="w-5 h-5 text-brown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -127,14 +127,14 @@ require_once '../includes/header.php';
             </svg>
             <span style="font-family:'Nunito',sans-serif;font-size:0.7rem;font-weight:700;color:#7A5533;">Instagram</span>
           </a>
-          <a href="https://tiktok.com" id="contact-tiktok" target="_blank" rel="noopener"
+          <a href="https://www.tiktok.com/@nekoandkopi" id="contact-tiktok" target="_blank" rel="noopener"
              class="flex flex-col items-center gap-1.5 py-3.5 rounded-2xl bg-black/[0.03] hover:bg-black/[0.06] transition-all duration-250 hover:-translate-y-0.5 hover:shadow-sm">
             <svg class="w-5 h-5 text-brown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
             </svg>
             <span style="font-family:'Nunito',sans-serif;font-size:0.7rem;font-weight:700;color:#7A5533;">TikTok</span>
           </a>
-          <a href="https://facebook.com" id="contact-facebook" target="_blank" rel="noopener"
+          <a href="https://www.facebook.com/profile.php?id=61552857654553" id="contact-facebook" target="_blank" rel="noopener"
              class="flex flex-col items-center gap-1.5 py-3.5 rounded-2xl bg-black/[0.03] hover:bg-black/[0.06] transition-all duration-250 hover:-translate-y-0.5 hover:shadow-sm">
             <svg class="w-5 h-5 text-brown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
@@ -229,7 +229,7 @@ require_once '../includes/header.php';
       Thank you! Our café team and residents have safely received your note. We will curl back to you within 24 hours.
     </p>
     <button type="button" id="close-success-btn" class="btn-primary w-full justify-center">
-      Cozy Close
+      Close
     </button>
   </div>
 </div>
@@ -281,52 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   checkContactStatus();
   setInterval(checkContactStatus, 30000);
-
-  // 2. Premium Form Submission Loader Overlay & Success Modal
-  const form = document.getElementById('contact-form');
-  const modal = document.getElementById('success-modal');
-  const closeBtn = document.getElementById('close-success-btn');
-  const submitBtn = document.getElementById('contact-submit');
-
-  if (form && modal && submitBtn) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      // Prevent double submission
-      if (submitBtn.disabled) return;
-      
-      // Show loading status inside the CTA button
-      const originalContent = submitBtn.innerHTML;
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin flex-shrink-0"></span> Sending Message...';
-      
-      setTimeout(() => {
-        // Restore CTA state
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalContent;
-        
-        // Render success modal
-        modal.classList.remove('opacity-0', 'pointer-events-none');
-        modal.querySelector('div').classList.remove('scale-95');
-        modal.querySelector('div').classList.add('scale-100');
-        
-        form.reset();
-      }, 1000);
-    });
-
-    closeBtn?.addEventListener('click', () => {
-      modal.classList.add('opacity-0', 'pointer-events-none');
-      modal.querySelector('div').classList.remove('scale-100');
-      modal.querySelector('div').classList.add('scale-95');
-    });
-
-    // Close on overlay backdrop click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeBtn.click();
-      }
-    });
-  }
 });
 </script>
 
