@@ -1,16 +1,14 @@
 <?php
 /**
- * config.php — Secure Local Configuration Parameter Panel
- * 
- * IMPORTANT: This file holds private SMTP credentials. Keep it local
- * and never commit it to public version control repositories like GitHub.
+ * config.php — Configuration
+ * Reads from Azure App Settings (env vars) with local fallbacks.
  */
 
 return [
-    'smtp_host'   => 'smtp.gmail.com',
-    'smtp_user'   => 'gallagevishwa@gmail.com',
-    'smtp_pass'   => 'ybilquylwxpfhuxv', // Gmail App Password
-    'smtp_port'   => 587,
-    'smtp_secure' => 'tls',
-    'recipient'   => 'gallagevishwa@gmail.com'
+    'smtp_host'   => getenv('SMTP_HOST') ?: 'smtp.gmail.com',
+    'smtp_user'   => getenv('SMTP_USER') ?: '',
+    'smtp_pass'   => getenv('SMTP_PASS') ?: '',
+    'smtp_port'   => (int)(getenv('SMTP_PORT') ?: 587),
+    'smtp_secure' => getenv('SMTP_SECURE') ?: 'tls',
+    'recipient'   => getenv('RECIPIENT') ?: '',
 ];
