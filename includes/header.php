@@ -3,7 +3,7 @@
  * header.php — Neko & Kopi Global Navigation
  */
 $current = $page ?? 'home';
-$base = '/NekoCafe';
+require __DIR__ . '/base.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

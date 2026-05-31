@@ -2,7 +2,7 @@
 $page      = 'events';
 $pageTitle = 'Events — Neko & Kopi Cat Café Colombo';
 $pageDesc  = 'Join us for cat adoption days, live acoustic nights, art workshops and more at Neko & Kopi — Colombo\'s cosiest cat café.';
-$base      = '/NekoCafe';
+require __DIR__ . '/../includes/base.php';
 require_once '../includes/header.php';
 
 $events = [

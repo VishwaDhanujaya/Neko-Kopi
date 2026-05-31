@@ -2,7 +2,7 @@
 $page      = 'contact';
 $pageTitle = 'Contact Us — Neko & Kopi Cat Café Colombo';
 $pageDesc  = 'Get in touch with Neko & Kopi — find us at 319/4 Nawala Rd, Colombo or reach us via WhatsApp, email, or our contact form.';
-$base      = '/NekoCafe';
+require __DIR__ . '/../includes/base.php';
 require_once '../includes/header.php';
 ?>
 

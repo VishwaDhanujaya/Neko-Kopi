@@ -2,7 +2,7 @@
 $page      = 'gallery';
 $pageTitle = 'Gallery — Neko & Kopi Cat Café Colombo';
 $pageDesc  = 'Step into our visual sanctuary. Explore our beloved resident cats, cozy wooden seating spaces, custom coffees, and sweet and savoury shop creations.';
-$base      = '/NekoCafe';
+require __DIR__ . '/../includes/base.php';
 require_once '../includes/header.php';
 
 $galleryItems = [

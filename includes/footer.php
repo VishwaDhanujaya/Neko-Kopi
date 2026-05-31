@@ -2,7 +2,7 @@
 /**
  * footer.php — Neko & Kopi Global Footer
  */
-$base = '/NekoCafe';
+require __DIR__ . '/base.php';
 ?>
 </main>
 

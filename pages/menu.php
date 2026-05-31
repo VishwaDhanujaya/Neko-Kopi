@@ -2,7 +2,7 @@
 $page      = 'menu';
 $pageTitle = 'Menu — Neko & Kopi Cat Café Colombo';
 $pageDesc  = 'Explore the Neko & Kopi menu — artisan coffees, teas, signature drinks, snacks and desserts. Order via Uber Eats or visit us in Colombo.';
-$base      = '/NekoCafe';
+require __DIR__ . '/../includes/base.php';
 require_once '../includes/header.php';
 
 $menuData = [

@@ -2,7 +2,7 @@
 $page = 'home';
 $pageTitle = 'Neko & Kopi — Cozy Cat Café in Colombo, Sri Lanka';
 $pageDesc = 'Step into Neko & Kopi — Colombo\'s warmest cat café. Artisan coffee, resident cats, and a Ghibli-inspired atmosphere at Nawala Road.';
-$base = '/NekoCafe';
+require __DIR__ . '/../includes/base.php';
 require_once '../includes/header.php';
 ?>
 
