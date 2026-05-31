@@ -2,8 +2,8 @@
 $page = 'home';
 $pageTitle = 'Neko & Kopi — Cozy Cat Café in Colombo, Sri Lanka';
 $pageDesc = 'Step into Neko & Kopi — Colombo\'s warmest cat café. Artisan coffee, resident cats, and a Ghibli-inspired atmosphere at Nawala Road.';
-require __DIR__ . '/../includes/base.php';
-require_once '../includes/header.php';
+require_once __DIR__ . '/../includes/base.php';
+require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <!-- ═══════════════════════════════════════
@@ -33,7 +33,7 @@ require_once '../includes/header.php';
       A home-like sanctuary where artisan coffee meets eight purring companions. Step in, slow down, stay a while.
     </p>
     <div class="reveal reveal-delay-3 flex flex-wrap justify-center gap-3">
-      <a href="<?= $base ?>/menu" id="hero-cta-menu" class="btn-primary">
+      <a href="<?= neko_page_url('menu') ?>" id="hero-cta-menu" class="btn-primary">
         <i data-lucide="utensils" class="w-4 h-4"></i>
         View Menu
       </a>
@@ -176,11 +176,11 @@ require_once '../includes/header.php';
       </div>
 
       <div class="flex flex-wrap gap-3 mt-2">
-        <a href="<?= $base ?>/menu" id="about-cta-menu" class="btn-primary">
+        <a href="<?= neko_page_url('menu') ?>" id="about-cta-menu" class="btn-primary">
           <i data-lucide="utensils" class="w-4 h-4"></i>
           Explore Our Menu
         </a>
-        <a href="<?= $base ?>/contact" id="about-cta-contact" class="btn-outline">
+        <a href="<?= neko_page_url('contact') ?>" id="about-cta-contact" class="btn-outline">
           <i data-lucide="map-pin" class="w-4 h-4"></i>
           Find Us
         </a>
@@ -243,7 +243,7 @@ require_once '../includes/header.php';
             style="border-top:1px solid rgba(196,149,106,0.18);">
             <span
               style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#A07850;font-weight:600;"><?= $d['price'] ?></span>
-            <a href="<?= $base ?>/menu" class="flex items-center gap-1 text-xs font-bold"
+            <a href="<?= neko_page_url('menu') ?>" class="flex items-center gap-1 text-xs font-bold"
               style="color:#72997C;font-family:'Nunito',sans-serif;text-decoration:none;">
               Full menu <i data-lucide="arrow-right" class="w-3 h-3"></i>
             </a>
@@ -278,7 +278,7 @@ require_once '../includes/header.php';
             style="border-top:1px solid rgba(196,149,106,0.18);">
             <span
               style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#A07850;font-weight:600;"><?= $f['price'] ?></span>
-            <a href="<?= $base ?>/menu" class="flex items-center gap-1 text-xs font-bold"
+            <a href="<?= neko_page_url('menu') ?>" class="flex items-center gap-1 text-xs font-bold"
               style="color:#72997C;font-family:'Nunito',sans-serif;text-decoration:none;">
               Full menu <i data-lucide="arrow-right" class="w-3 h-3"></i>
             </a>
@@ -288,7 +288,7 @@ require_once '../includes/header.php';
     </div>
 
     <div class="text-center reveal">
-      <a href="<?= $base ?>/menu" id="featured-cta-menu" class="btn-primary">
+      <a href="<?= neko_page_url('menu') ?>" id="featured-cta-menu" class="btn-primary">
         <i data-lucide="utensils" class="w-4 h-4"></i>
         See Full Menu
       </a>
@@ -354,7 +354,7 @@ require_once '../includes/header.php';
             Cat adoption days, live acoustic evenings, art workshops — there's always a warm reason to visit Neko &amp;
             Kopi.
           </p>
-          <a href="<?= $base ?>/events" id="events-teaser-cta" class="btn-amber self-start">
+          <a href="<?= neko_page_url('events') ?>" id="events-teaser-cta" class="btn-amber self-start">
             <i data-lucide="calendar" class="w-4 h-4"></i>
             View All Events
           </a>
@@ -497,4 +497,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>

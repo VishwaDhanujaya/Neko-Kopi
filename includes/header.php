@@ -3,7 +3,7 @@
  * header.php — Neko & Kopi Global Navigation
  */
 $current = $page ?? 'home';
-require __DIR__ . '/base.php';
+require_once __DIR__ . '/base.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +48,7 @@ require __DIR__ . '/base.php';
 
       <!-- Logo -->
       <!-- Logo -->
-      <a href="<?= $base ?>/home" id="logo-link" class="flex items-center gap-2.5 group flex-shrink-0">
+      <a href="<?= neko_page_url('home') ?>" id="logo-link" class="flex items-center gap-2.5 group flex-shrink-0">
         <img src="<?= $base ?>/assets/images/logo.png" alt="Neko &amp; Kopi"
           class="w-9 h-9 rounded-full object-cover border border-black/5 shadow-sm transition-transform duration-300 group-hover:scale-105">
         <span class="font-serif text-base tracking-tight font-semibold" style="color:#2C1E15;">Neko &amp; <span
@@ -59,11 +59,11 @@ require __DIR__ . '/base.php';
       <ul class="hidden md:flex items-center gap-7" role="list">
         <?php
         $links = [
-          'home' => ['Home', "$base/home"],
-          'menu' => ['Menu', "$base/menu"],
-          'gallery' => ['Gallery', "$base/gallery"],
-          'events' => ['Events', "$base/events"],
-          'contact' => ['Contact', "$base/contact"],
+          'home' => ['Home', neko_page_url('home')],
+          'menu' => ['Menu', neko_page_url('menu')],
+          'gallery' => ['Gallery', neko_page_url('gallery')],
+          'events' => ['Events', neko_page_url('events')],
+          'contact' => ['Contact', neko_page_url('contact')],
         ];
         foreach ($links as $key => [$label, $href]):
           $isActive = $current === $key;
@@ -76,7 +76,7 @@ require __DIR__ . '/base.php';
       </ul>
 
       <!-- Desktop CTA -->
-      <a href="<?= $base ?>/menu" id="nav-cta-menu" class="btn-primary btn-sm hidden md:inline-flex">
+      <a href="<?= neko_page_url('menu') ?>" id="nav-cta-menu" class="btn-primary btn-sm hidden md:inline-flex">
         <i data-lucide="coffee" class="w-3.5 h-3.5"></i>
         View Menu
       </a>
@@ -108,7 +108,7 @@ require __DIR__ . '/base.php';
             <?= $label ?>
           </a>
         <?php endforeach; ?>
-        <a href="<?= $base ?>/menu" id="mobile-nav-cta" class="btn-primary mt-3 justify-center">
+        <a href="<?= neko_page_url('menu') ?>" id="mobile-nav-cta" class="btn-primary mt-3 justify-center">
           <i data-lucide="coffee" class="w-4 h-4"></i>
           View Menu
         </a>

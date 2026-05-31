@@ -7,3 +7,12 @@
  * App Service application settings.
  */
 $base = rtrim(getenv('APP_BASE_PATH') ?: '', '/');
+
+if (!function_exists('neko_page_url')) {
+    function neko_page_url(string $page): string
+    {
+        global $base;
+
+        return ($base ?: '') . '/?page=' . rawurlencode($page);
+    }
+}

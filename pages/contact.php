@@ -2,8 +2,8 @@
 $page      = 'contact';
 $pageTitle = 'Contact Us — Neko & Kopi Cat Café Colombo';
 $pageDesc  = 'Get in touch with Neko & Kopi — find us at 319/4 Nawala Rd, Colombo or reach us via WhatsApp, email, or our contact form.';
-require __DIR__ . '/../includes/base.php';
-require_once '../includes/header.php';
+require_once __DIR__ . '/../includes/base.php';
+require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <!-- PAGE HEADER -->
@@ -157,7 +157,7 @@ require_once '../includes/header.php';
         <!-- Feedback Alert -->
         <div id="form-message" class="hidden mb-5 px-4 py-3 bg-sage/10 border border-sage/30 rounded-xl text-sm font-semibold text-sage-dark" style="font-family:'Nunito',sans-serif;"></div>
 
-        <form id="contact-form" action="#" method="POST" class="flex flex-col gap-5">
+        <form id="contact-form" action="<?= $base ?>/pages/send_email.php" method="POST" class="flex flex-col gap-5">
           <!-- Name + Email Row -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -284,4 +284,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>

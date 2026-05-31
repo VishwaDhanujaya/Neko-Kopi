@@ -2,7 +2,7 @@
 /**
  * footer.php — Neko & Kopi Global Footer
  */
-require __DIR__ . '/base.php';
+require_once __DIR__ . '/base.php';
 ?>
 </main>
 
@@ -60,11 +60,11 @@ require __DIR__ . '/base.php';
         <p style="font-family:'Playfair Display',serif;font-size:1rem;color:#EDE0CC;margin-bottom:1.25rem;">Quick Links</p>
         <ul class="flex flex-col gap-2.5">
           <?php $navItems = [
-            ['Home',           "$base/",                  'home'],
-            ['Menu',           "$base/menu",              'utensils'],
-            ['Gallery',        "$base/gallery",           'image'],
-            ['Events',         "$base/events",            'calendar'],
-            ['Contact Us',     "$base/contact",           'mail'],
+            ['Home',           neko_page_url('home'),     'home'],
+            ['Menu',           neko_page_url('menu'),     'utensils'],
+            ['Gallery',        neko_page_url('gallery'),  'image'],
+            ['Events',         neko_page_url('events'),   'calendar'],
+            ['Contact Us',     neko_page_url('contact'),  'mail'],
           ];
           foreach ($navItems as [$label, $href, $icon]): ?>
           <li>

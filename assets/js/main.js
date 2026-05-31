@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const formData = new FormData(contactForm);
       
-      fetch('send_email', {
+      fetch(contactForm.getAttribute('action') || 'pages/send_email.php', {
         method: 'POST',
         body: formData
       })

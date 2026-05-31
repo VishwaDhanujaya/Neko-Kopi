@@ -2,8 +2,8 @@
 $page      = 'events';
 $pageTitle = 'Events — Neko & Kopi Cat Café Colombo';
 $pageDesc  = 'Join us for cat adoption days, live acoustic nights, art workshops and more at Neko & Kopi — Colombo\'s cosiest cat café.';
-require __DIR__ . '/../includes/base.php';
-require_once '../includes/header.php';
+require_once __DIR__ . '/../includes/base.php';
+require_once __DIR__ . '/../includes/header.php';
 
 $events = [
   [
@@ -187,4 +187,4 @@ $events = [
   </div>
 </section>
 
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
