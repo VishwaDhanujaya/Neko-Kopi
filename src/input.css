@@ -37,8 +37,8 @@
   [data-lucide] { display: inline-block; vertical-align: middle; stroke-width: 2px; }
 
   ::selection {
-    background: rgba(111, 78, 55, 0.2);
-    color: #6F4E37;
+    background: rgba(162, 104, 64, 0.2);
+    color: #a26840;
   }
 }
 
@@ -69,14 +69,14 @@
   }
   .nav-link:hover { color: #1A1A1C; }
   .nav-link.active {
-    color: #6F4E37;
+    color: #a26840;
   }
 
   /* ── Buttons ──────────────────────────────── */
   .btn-primary {
     display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
     padding: 0.75rem 1.75rem;
-    background: #6F4E37;
+    background: #a26840;
     color: #FFFFFF;
     font-weight: 600;
     font-size: 0.9rem;
@@ -86,16 +86,16 @@
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     white-space: nowrap;
     text-decoration: none;
-    box-shadow: 0 4px 14px rgba(111, 78, 55, 0.2);
+    box-shadow: 0 4px 14px rgba(162, 104, 64, 0.2);
   }
   .btn-primary:hover {
-    background: #5A3D2B;
+    background: #815333;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(111, 78, 55, 0.3);
+    box-shadow: 0 8px 24px rgba(162, 104, 64, 0.3);
   }
   .btn-primary:active {
     transform: scale(0.96) translateY(0);
-    box-shadow: 0 2px 8px rgba(111, 78, 55, 0.15);
+    box-shadow: 0 2px 8px rgba(162, 104, 64, 0.15);
   }
 
   .btn-outline {
@@ -222,7 +222,7 @@
   .menu-item-price {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #6F4E37;
+    color: #a26840;
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -253,7 +253,7 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #A67C52;
+    color: #c58356;
   }
 
   /* ── Badges ───────────────────────────────── */
@@ -263,8 +263,8 @@
     border-radius: 99px;
     font-size: 0.75rem;
     font-weight: 700;
-    background: rgba(166, 124, 82, 0.12);
-    color: #A67C52;
+    background: rgba(197, 131, 86, 0.12);
+    color: #c58356;
     letter-spacing: 0.01em;
   }
 
@@ -346,8 +346,8 @@
     border-radius: 1rem;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    background: rgba(111, 78, 55, 0.1);
-    color: #6F4E37;
+    background: rgba(162, 104, 64, 0.1);
+    color: #a26840;
   }
   .icon-box-lg {
     width: 3.5rem; height: 3.5rem;
@@ -361,7 +361,7 @@
   /* ── Divider ──────────────────────────────── */
   .divider {
     width: 3rem; height: 3px;
-    background: rgba(166, 124, 82, 0.4);
+    background: rgba(197, 131, 86, 0.4);
     border-radius: 99px;
   }
 
@@ -403,8 +403,8 @@
   }
   .form-input:focus {
     background: #FFFFFF;
-    border-color: #6F4E37;
-    box-shadow: 0 0 0 4px rgba(111, 78, 55, 0.12);
+    border-color: #a26840;
+    box-shadow: 0 0 0 4px rgba(162, 104, 64, 0.12);
   }
   .form-input::placeholder {
     color: #8E8E93;
@@ -428,7 +428,7 @@
     pointer-events: none;
   }
   .glow-orb-brown {
-    background: #6F4E37;
+    background: #a26840;
   }
 }
 

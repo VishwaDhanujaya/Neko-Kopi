@@ -531,9 +531,9 @@ document.addEventListener('DOMContentLoaded', () => {
         lbl.style.boxShadow = 'none';
       });
       const sLbl = baseSelected.closest('label');
-      sLbl.style.borderColor = '#FF5E13';
-      sLbl.style.background = 'rgba(255,94,19,0.02)';
-      sLbl.style.boxShadow = '0 4px 12px rgba(255,94,19,0.1)';
+      sLbl.style.borderColor = '#a26840';
+      sLbl.style.background = 'rgba(162, 104, 64, 0.02)';
+      sLbl.style.boxShadow = '0 4px 12px rgba(162, 104, 64, 0.1)';
     }
     total += basePrice;
 
@@ -550,9 +550,9 @@ document.addEventListener('DOMContentLoaded', () => {
         lbl.style.boxShadow = 'none';
       });
       const sLbl = spiceSelected.closest('label');
-      sLbl.style.borderColor = '#FF5E13';
-      sLbl.style.background = 'rgba(255,94,19,0.02)';
-      sLbl.style.boxShadow = '0 4px 12px rgba(255,94,19,0.1)';
+      sLbl.style.borderColor = '#a26840';
+      sLbl.style.background = 'rgba(162, 104, 64, 0.02)';
+      sLbl.style.boxShadow = '0 4px 12px rgba(162, 104, 64, 0.1)';
     }
     total += spicePrice;
 
@@ -568,9 +568,9 @@ document.addEventListener('DOMContentLoaded', () => {
         lbl.style.boxShadow = 'none';
       });
       const sLbl = brothSelected.closest('label');
-      sLbl.style.borderColor = '#FF5E13';
-      sLbl.style.background = 'rgba(255,94,19,0.02)';
-      sLbl.style.boxShadow = '0 4px 12px rgba(255,94,19,0.1)';
+      sLbl.style.borderColor = '#a26840';
+      sLbl.style.background = 'rgba(162, 104, 64, 0.02)';
+      sLbl.style.boxShadow = '0 4px 12px rgba(162, 104, 64, 0.1)';
     }
 
     const selectedAddonNames = [];
@@ -581,9 +581,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const addonPrice = parseInt(input.dataset.price) || 0;
         total += addonPrice;
         selectedAddonNames.push(input.value);
-        lbl.style.borderColor = '#FF5E13';
-        lbl.style.background = 'rgba(255,94,19,0.02)';
-        lbl.style.boxShadow = '0 4px 12px rgba(255,94,19,0.1)';
+        lbl.style.borderColor = '#a26840';
+        lbl.style.background = 'rgba(162, 104, 64, 0.02)';
+        lbl.style.boxShadow = '0 4px 12px rgba(162, 104, 64, 0.1)';
         const pill = document.createElement('span');
         pill.className = 'px-2.5 py-1 rounded-lg text-[10px] font-bold bg-theme-brown/10 text-theme-brown';
         pill.textContent = `${input.value} (+Rs. ${addonPrice})`;

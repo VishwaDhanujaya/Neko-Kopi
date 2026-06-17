@@ -103,7 +103,7 @@ require_once __DIR__ . '/base.php';
           ?>
           <a href="<?= $href ?>" id="mobile-nav-<?= $key ?>"
             class="py-3 text-base font-semibold border-b transition-colors duration-200"
-            style="color:<?= $isActive ? '#FF5E13' : '#1C1C1E' ?>; border-color:rgba(0,0,0,0.04);">
+            style="color:<?= $isActive ? '#a26840' : '#1C1C1E' ?>; border-color:rgba(0,0,0,0.04);">
             <?= $label ?>
           </a>
         <?php endforeach; ?>

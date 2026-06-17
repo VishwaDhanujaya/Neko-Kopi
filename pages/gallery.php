@@ -8,12 +8,12 @@ require_once __DIR__ . '/../includes/header.php';
 $galleryItems = [
   ['src' => 'hero.webp', 'alt' => 'Neko & Kopi Catfé Interior', 'title' => 'The Main Café', 'desc' => 'Warm wooden textures and trailing plants create our peaceful sanctuary.', 'type' => 'tall'],
   ['src' => 'cats.webp', 'alt' => 'Our Resident Cats', 'title' => 'Feline Friends', 'desc' => 'One of our resident cats enjoying a quiet afternoon nap.', 'type' => 'wide'],
-  ['src' => 'cats.webp', 'alt' => 'Cat with Coffee', 'title' => 'Kopi Time', 'desc' => 'Where your morning brew meets the perfect purring companion.', 'type' => 'square'],
-  ['src' => 'menu_matcha.png', 'alt' => 'Earth Matcha Latte', 'title' => 'Earth Matcha', 'desc' => 'Ceremonial grade matcha layered perfectly over iced milk.', 'type' => 'square'],
-  ['src' => 'menu_ramyeon.png', 'alt' => 'Custom Ramyeon', 'title' => 'Signature Bowls', 'desc' => 'Build your own steaming bowl of spicy Korean ramyeon.', 'type' => 'tall'],
-  ['src' => 'menu_sando.png', 'alt' => 'Double Katsu Sando', 'title' => 'Katsu Sando', 'desc' => 'Thick Japanese milk bread sandwiching crispy double chicken katsu.', 'type' => 'wide'],
-  ['src' => 'menu_coffee.png', 'alt' => 'Artisan Coffee', 'title' => 'Artisan Brews', 'desc' => 'Every cup is crafted with precision and care by our baristas.', 'type' => 'square'],
-  ['src' => 'seating.png', 'alt' => 'Cozy Seating Area', 'title' => 'Your Corner', 'desc' => 'Find a quiet nook to read, work, or simply relax.', 'type' => 'square'],
+  ['src' => 'caramel-latte.webp', 'alt' => 'Salted Caramel Latte', 'title' => 'Caramel Latte', 'desc' => 'Sweet, buttery caramel syrup combined with rich espresso and milk.', 'type' => 'square'],
+  ['src' => 'matcha-latte.webp', 'alt' => 'Ceremonial Matcha Latte', 'title' => 'Matcha Latte', 'desc' => 'Artisan ceremonial Uji matcha layered over creamy milk.', 'type' => 'square'],
+  ['src' => 'ramen.webp', 'alt' => 'Steaming Hakata Ramen', 'title' => 'Hakata Ramen', 'desc' => 'Authentic, rich broth with fresh wheat noodles and seasoned egg.', 'type' => 'tall'],
+  ['src' => 'katsu-curry.webp', 'alt' => 'Chicken Katsu Curry', 'title' => 'Katsu Curry', 'desc' => 'Crispy chicken katsu served with rich, aromatic Japanese curry.', 'type' => 'wide'],
+  ['src' => 'latte.webp', 'alt' => 'Classic Cafe Latte', 'title' => 'Cafe Latte', 'desc' => 'Smooth double shot of espresso with silky, velvety microfoam.', 'type' => 'square'],
+  ['src' => 'gyoza.webp', 'alt' => 'Crispy Chicken Gyoza', 'title' => 'Chicken Gyoza', 'desc' => 'Pan-fried Japanese dumplings with a savory chicken and veggie filling.', 'type' => 'square'],
 ];
 ?>
 

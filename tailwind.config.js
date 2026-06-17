@@ -17,10 +17,10 @@ module.exports = {
         
         // Cafe Theme Palette (Apple-tier elegance)
         theme: {
-          brown: '#6F4E37', // Roasted Coffee
-          accent: '#A67C52', // Caramel/Latte
-          glow:   'rgba(111, 78, 55, 0.2)',
-          glowAccent: 'rgba(166, 124, 82, 0.2)'
+          brown: '#a26840', // Base Theme Color
+          accent: '#c58356', // Lighter Accent Color
+          glow:   'rgba(162, 104, 64, 0.2)',
+          glowAccent: 'rgba(197, 131, 86, 0.2)'
         },
 
         // Neutrals
@@ -46,7 +46,7 @@ module.exports = {
       boxShadow: {
         'apple-subtle': '0 2px 8px rgba(0,0,0,0.04)',
         'apple-card':   '0 8px 32px rgba(0,0,0,0.05)',
-        'theme-glow': '0 8px 32px rgba(111, 78, 55, 0.15)',
+        'theme-glow': '0 8px 32px rgba(162, 104, 64, 0.15)',
       },
       animation: {
         'fade-up':  'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',

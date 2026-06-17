@@ -164,9 +164,9 @@ require_once __DIR__ . '/../includes/header.php';
     <!-- Drinks Grid -->
     <div id="home-drinks-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 home-menu-content">
       <?php $drinks = [
-        ['name' => 'Earth Matcha Latte', 'desc' => 'Ceremonial Japanese matcha layered with thick milk.', 'price' => 'Rs. 1,280', 'tag' => 'Signature', 'img' => neko_image_url('menu_matcha.png', 'Matcha Latte', 400, 300)],
-        ['name' => 'Dalgona Iced Kopi', 'desc' => 'Frothy whipped coffee over sweet chilled milk.', 'price' => 'Rs. 650', 'tag' => 'Best Seller', 'img' => neko_image_url('menu_coffee.png', 'Dalgona Coffee', 400, 300)],
-        ['name' => 'Vietnamese Iced Kopi', 'desc' => 'Strong dark coffee dripped over creamy condensed milk.', 'price' => 'Rs. 760', 'tag' => 'Fan Favourite', 'img' => neko_image_url('menu_vietnamese.png', 'Vietnamese Coffee', 400, 300)],
+        ['name' => 'Ceremonial Matcha Latte', 'desc' => 'Artisan ceremonial Uji matcha whisked and layered over creamy milk.', 'price' => 'Rs. 1,280', 'tag' => 'Signature', 'img' => neko_image_url('matcha-latte.webp', 'Ceremonial Matcha Latte', 400, 300)],
+        ['name' => 'Classic Cafe Latte', 'desc' => 'Smooth, bold double shot of espresso with silky, velvety microfoam.', 'price' => 'Rs. 850', 'tag' => 'Best Seller', 'img' => neko_image_url('latte.webp', 'Classic Cafe Latte', 400, 300)],
+        ['name' => 'Salted Caramel Latte', 'desc' => 'Rich espresso combined with steamed milk and sweet, buttery caramel syrup.', 'price' => 'Rs. 950', 'tag' => 'Fan Favourite', 'img' => neko_image_url('caramel-latte.webp', 'Salted Caramel Latte', 400, 300)],
       ];
       foreach ($drinks as $i => $d): ?>
         <div class="bento-card p-6 flex flex-col gap-4 reveal reveal-delay-<?= $i ?>">
@@ -190,9 +190,9 @@ require_once __DIR__ . '/../includes/header.php';
     <!-- Food Grid -->
     <div id="home-food-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 home-menu-content" style="display: none;">
       <?php $food = [
-        ['name' => 'Korean Fried Chicken', 'desc' => 'Crispy, double-fried boneless chicken glazed with Korean sauces.', 'price' => 'Rs. 1,500', 'tag' => 'Halal', 'img' => neko_image_url('menu_chicken.png', 'Korean Fried Chicken', 400, 300)],
-        ['name' => 'Double Katsu Sando', 'desc' => 'Japanese milk bread with crispy chicken katsu and Bulldog sauce.', 'price' => 'Rs. 2,250', 'tag' => 'Popular', 'img' => neko_image_url('menu_sando.png', 'Double Katsu Sando', 400, 300)],
-        ['name' => 'Steaming Ramyeon', 'desc' => 'Customizable Korean noodles with rich broth and toppings.', 'price' => 'From Rs. 1,000', 'tag' => 'Custom', 'img' => neko_image_url('menu_ramyeon.png', 'Steaming Ramyeon', 400, 300)],
+        ['name' => 'Crispy Chicken Gyoza', 'desc' => 'Pan-fried Japanese dumplings with a savory chicken and veggie filling, served with dip.', 'price' => 'Rs. 1,200', 'tag' => 'Popular', 'img' => neko_image_url('gyoza.webp', 'Crispy Chicken Gyoza', 400, 300)],
+        ['name' => 'Chicken Katsu Curry', 'desc' => 'Crispy chicken katsu served over steamed rice with a rich, aromatic Japanese curry.', 'price' => 'Rs. 2,450', 'tag' => 'Signature', 'img' => neko_image_url('katsu-curry.webp', 'Chicken Katsu Curry', 400, 300)],
+        ['name' => 'Steaming Hakata Ramen', 'desc' => 'Rich broth with fresh noodles, tender chicken slice, seasoned egg, and green onions.', 'price' => 'Rs. 2,100', 'tag' => 'Chef Choice', 'img' => neko_image_url('ramen.webp', 'Steaming Hakata Ramen', 400, 300)],
       ];
       foreach ($food as $i => $f): ?>
         <div class="bento-card p-6 flex flex-col gap-4">
