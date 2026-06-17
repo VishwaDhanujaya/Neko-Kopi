@@ -1,154 +1,67 @@
 <?php
-$page      = 'gallery';
-$pageTitle = 'Gallery — Neko & Kopi Cat Café Colombo';
-$pageDesc  = 'Step into our visual sanctuary. Explore our beloved resident cats, cozy wooden seating spaces, custom coffees, and sweet and savoury shop creations.';
+$page = 'gallery';
+$pageTitle = 'Gallery — Neko & Kopi Catfé Cat Café Colombo';
+$pageDesc = 'Take a look inside Neko & Kopi Catfé. Browse photos of our cozy interior, delicious menu items, and adorable resident cats.';
 require_once __DIR__ . '/../includes/base.php';
 require_once __DIR__ . '/../includes/header.php';
 
 $galleryItems = [
-  // Cats
-  [
-    'title' => 'Mochi',
-    'cat'   => 'cats',
-    'tag'   => 'Resident Cat',
-    'badge' => 'badge-dark',
-    'desc'  => 'Our white marshmallow, sleeping in cardboard boxes.',
-    'img'   => 'cat_mochi.png'
-  ],
-  [
-    'title' => 'Kopi',
-    'cat'   => 'cats',
-    'tag'   => 'Resident Cat',
-    'badge' => 'badge-dark',
-    'desc'  => 'Our brave ginger barista counter manager.',
-    'img'   => 'cat_kopi.png'
-  ],
-  [
-    'title' => 'Miso',
-    'cat'   => 'cats',
-    'tag'   => 'Resident Cat',
-    'badge' => 'badge-dark',
-    'desc'  => 'Quiet calico who loves curled naps in the book library.',
-    'img'   => 'cat_miso.png'
-  ],
-  [
-    'title' => 'Sakura',
-    'cat'   => 'cats',
-    'tag'   => 'Resident Cat',
-    'badge' => 'badge-dark',
-    'desc'  => 'Tortoiseshell star who loves chasing golden sunbeams.',
-    'img'   => 'cat_sakura.png'
-  ],
-  // Space
-  [
-    'title' => 'Cozy Nook Seating',
-    'cat'   => 'space',
-    'tag'   => 'Café & Space',
-    'badge' => 'badge-amber',
-    'desc'  => 'Warm wooden seating with soft green houseplants.',
-    'img'   => 'seating.png'
-  ],
-  [
-    'title' => 'Fresh Drip Coffee',
-    'cat'   => 'space',
-    'tag'   => 'Café & Space',
-    'badge' => 'badge-amber',
-    'desc'  => 'Premium custom roasts, brewed fresh daily.',
-    'img'   => 'coffee.png'
-  ],
-  [
-    'title' => 'Sanctuary Corner',
-    'cat'   => 'space',
-    'tag'   => 'Café & Space',
-    'badge' => 'badge-amber',
-    'desc'  => 'A peaceful home-like space designed to help you slow down.',
-    'img'   => 'hero.png'
-  ],
-  // Shop Food
-  [
-    'title' => 'Earth Matcha Latte',
-    'cat'   => 'shop',
-    'tag'   => 'Shop Highlight',
-    'badge' => '',
-    'desc'  => 'Layered premium ceremonial matcha with coconut cream.',
-    'img'   => 'menu_matcha.png'
-  ],
-  [
-    'title' => 'Premium Katsu Sando',
-    'cat'   => 'shop',
-    'tag'   => 'Shop Highlight',
-    'badge' => '',
-    'desc'  => 'Crispy chicken katsu with sweet cabbage on milk bread.',
-    'img'   => 'menu_sando.png'
-  ],
-  [
-    'title' => 'Steaming Ramyeon Bowl',
-    'cat'   => 'shop',
-    'tag'   => 'Shop Highlight',
-    'badge' => '',
-    'desc'  => 'Korean noodles with soft boiled egg and spring leeks.',
-    'img'   => 'menu_ramyeon.png'
-  ]
+  ['src' => 'hero.webp', 'alt' => 'Neko & Kopi Catfé Interior', 'title' => 'The Main Café', 'desc' => 'Warm wooden textures and trailing plants create our peaceful sanctuary.', 'type' => 'tall'],
+  ['src' => 'cats.webp', 'alt' => 'Our Resident Cats', 'title' => 'Feline Friends', 'desc' => 'One of our resident cats enjoying a quiet afternoon nap.', 'type' => 'wide'],
+  ['src' => 'cats.webp', 'alt' => 'Cat with Coffee', 'title' => 'Kopi Time', 'desc' => 'Where your morning brew meets the perfect purring companion.', 'type' => 'square'],
+  ['src' => 'menu_matcha.png', 'alt' => 'Earth Matcha Latte', 'title' => 'Earth Matcha', 'desc' => 'Ceremonial grade matcha layered perfectly over iced milk.', 'type' => 'square'],
+  ['src' => 'menu_ramyeon.png', 'alt' => 'Custom Ramyeon', 'title' => 'Signature Bowls', 'desc' => 'Build your own steaming bowl of spicy Korean ramyeon.', 'type' => 'tall'],
+  ['src' => 'menu_sando.png', 'alt' => 'Double Katsu Sando', 'title' => 'Katsu Sando', 'desc' => 'Thick Japanese milk bread sandwiching crispy double chicken katsu.', 'type' => 'wide'],
+  ['src' => 'menu_coffee.png', 'alt' => 'Artisan Coffee', 'title' => 'Artisan Brews', 'desc' => 'Every cup is crafted with precision and care by our baristas.', 'type' => 'square'],
+  ['src' => 'seating.png', 'alt' => 'Cozy Seating Area', 'title' => 'Your Corner', 'desc' => 'Find a quiet nook to read, work, or simply relax.', 'type' => 'square'],
 ];
 ?>
 
 <!-- PAGE HEADER -->
-<section class="pt-[62px] relative overflow-hidden" style="background:#FBFBFA;" id="gallery-header">
-  <div class="max-w-3xl mx-auto px-5 sm:px-8 py-16 text-center">
+<section class="pt-24 pb-12 relative overflow-hidden" id="gallery-header">
+  <div class="glow-orb bg-theme-brown w-[500px] h-[500px] top-0 right-0 translate-x-1/3 -translate-y-1/3 opacity-20"></div>
+  <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
     <div class="reveal">
-      <span class="badge mb-5 inline-flex">
-        <i data-lucide="image" class="w-3.5 h-3.5 text-sage"></i>
-        Visual Sanctuary
+      <span class="badge mb-5 inline-flex bg-white shadow-apple-subtle text-theme-brown border border-black/5">
+        <i data-lucide="image" class="w-3 h-3"></i>
+        Visual Tour
       </span>
     </div>
-    <h1 class="reveal reveal-delay-1 section-heading mb-4">Café Gallery</h1>
-    <p class="reveal reveal-delay-2 section-subheading mx-auto mb-6">
-      Explore the purrfect cozy corners, resident companion cats, and exquisite artisan creations that make Neko &amp; Kopi a home away from home.
+    <h1 class="reveal reveal-delay-1 section-heading mb-4">Our Gallery</h1>
+    <p class="reveal reveal-delay-2 section-subheading mx-auto">
+      Glimpses of everyday magic at Neko & Kopi Catfé.
     </p>
   </div>
 </section>
 
-<!-- STICKY GALLERY TABS -->
-<div class="sticky top-[62px] z-40 tab-scroll-container" style="background:rgba(251,251,250,0.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,0.045);" id="gallery-tabs-bar">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 flex md:justify-center gap-2.5 overflow-x-auto scrollbar-hide">
-    <button id="gtab-all" class="cat-tab active" data-filter="all">
-      <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
-      All Photos
-    </button>
-    <button id="gtab-cats" class="cat-tab" data-filter="cats">
-      <i data-lucide="cat" class="w-3.5 h-3.5"></i>
-      Resident Cats
-    </button>
-    <button id="gtab-space" class="cat-tab" data-filter="space">
-      <i data-lucide="armchair" class="w-3.5 h-3.5"></i>
-      Cozy Space
-    </button>
-    <button id="gtab-shop" class="cat-tab" data-filter="shop">
-      <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
-      Shop &amp; Food
-    </button>
-  </div>
-</div>
-
-<!-- GALLERY GRID CONTENT -->
-<section style="background:#FBFBFA; min-height: 60vh;" id="gallery-content-section" class="py-12">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8">
-    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300">
+<!-- MASONRY / BENTO GALLERY GRID -->
+<section class="pb-24">
+  <div class="max-w-[1400px] mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[250px]">
       
-      <?php foreach ($galleryItems as $i => $item): ?>
-      <div class="card overflow-hidden group gallery-item-card transition-all duration-300" 
-           data-item-cat="<?=$item['cat']?>">
-        <div class="h-64 overflow-hidden relative">
-          <img src="<?=$base?>/assets/images/<?=$item['img']?>" 
-               alt="<?=$item['title']?>" 
-               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-          <div class="absolute top-3 left-3">
-            <span class="badge <?=$item['badge']?>"><?=$item['tag']?></span>
-          </div>
+      <?php foreach ($galleryItems as $index => $item): 
+        $colSpan = 'col-span-1';
+        $rowSpan = 'row-span-1';
+        
+        if ($item['type'] === 'wide') {
+            $colSpan = 'md:col-span-2';
+        } elseif ($item['type'] === 'tall') {
+            $rowSpan = 'row-span-2';
+        }
+      ?>
+      <div class="gallery-item-card <?= $colSpan ?> <?= $rowSpan ?> bento-card reveal group cursor-pointer" style="transition-delay: <?= $index * 50 ?>ms">
+        <img src="<?= neko_image_url($item['src'], $item['title'], 800, 800) ?>" alt="<?= $item['alt'] ?>" 
+             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        <div class="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+          <h3 class="text-white font-bold text-lg mb-1 tracking-tight"><?= $item['title'] ?></h3>
+          <p class="text-white/70 text-sm font-medium leading-tight"><?= $item['desc'] ?></p>
         </div>
-        <div class="p-5 flex flex-col gap-1.5">
-          <h3 class="font-serif text-base font-bold" style="color:#2C1E15;"><?=$item['title']?></h3>
-          <p class="text-xs leading-relaxed" style="color:#8B6850; font-family:'Nunito',sans-serif;"><?=$item['desc']?></p>
+
+        <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-apple-subtle">
+          <i data-lucide="maximize-2" class="w-4 h-4"></i>
         </div>
       </div>
       <?php endforeach; ?>
@@ -156,65 +69,5 @@ $galleryItems = [
     </div>
   </div>
 </section>
-
-<!-- INTERACTIVE GALLERY SCRIPT -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const tabs = document.querySelectorAll('#gallery-tabs-bar button[data-filter]');
-  const cards = document.querySelectorAll('.gallery-item-card');
-  const grid = document.getElementById('gallery-grid');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // 1. Remove active state from all tabs
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      const filterValue = tab.getAttribute('data-filter');
-
-      // 1.5 Smoothly scroll to the start of the gallery content grid
-      const contentSection = document.getElementById('gallery-content-section');
-      if (contentSection) {
-        const navbarHeight = 62;
-        const tabsBarHeight = 50;
-        const targetOffset = contentSection.offsetTop - (navbarHeight + tabsBarHeight);
-        window.scrollTo({
-          top: targetOffset,
-          behavior: 'smooth'
-        });
-      }
-
-      // 2. Fade grid out for transition reflow
-      grid.style.opacity = '0';
-      grid.style.transform = 'translateY(10px)';
-
-      setTimeout(() => {
-        // 3. Show/hide corresponding cards
-        cards.forEach(card => {
-          const itemCat = card.getAttribute('data-item-cat');
-          if (filterValue === 'all' || itemCat === filterValue) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
-        });
-
-        // Force a layout reflow
-        grid.offsetHeight;
-
-        // 4. Fade back in with smooth slide-up
-        grid.style.opacity = '1';
-        grid.style.transform = 'translateY(0)';
-      }, 250);
-    });
-  });
-});
-</script>
-
-<style>
-#gallery-grid {
-  transition: opacity 250ms ease, transform 250ms ease;
-}
-</style>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

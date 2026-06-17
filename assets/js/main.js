@@ -1,5 +1,5 @@
 /**
- * main.js — Neko & Kopi Interactions & Mobile-First UX Engine
+ * main.js — Neko & Kopi Interactions & UX Engine
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -54,17 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         const target = tab.dataset.category || tab.dataset.filter;
-        
-        // Skip for homepage tab selector, which uses switchHomeMenu inline function
+
+        // Skip for homepage tab selector
         if (tab.classList.contains('home-menu-tab')) return;
 
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
-        
-        // Center the clicked tab smoothly in horizontal scrolling row
+
         tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 
-        // Handle sections toggling if on Menu page
         if (sections.length) {
           sections.forEach(sec => {
             const match = target === 'all' || sec.dataset.category === target;
@@ -72,46 +70,28 @@ document.addEventListener('DOMContentLoaded', () => {
               sec.style.display = '';
               sec.style.willChange = 'transform, opacity';
               sec.style.opacity = '0';
-              sec.style.transform = 'translateY(16px) scale(0.985)';
-              sec.style.transition = 'opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
-              
-              sec.offsetHeight; // Force reflow
-              
+              sec.style.transform = 'translateY(12px)';
+              sec.style.transition = 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+              sec.offsetHeight;
               sec.style.opacity = '1';
-              sec.style.transform = 'translateY(0) scale(1)';
-              
-              // Clean up will-change after transition finishes to optimize GPU memory
-              setTimeout(() => {
-                sec.style.willChange = '';
-              }, 450);
+              sec.style.transform = 'translateY(0)';
+              setTimeout(() => { sec.style.willChange = ''; }, 400);
             } else {
               sec.style.display = 'none';
             }
           });
         }
 
-        // Smoothly scroll to the correct Category Showcase header (offsetting both header and sticky category bar)
         setTimeout(() => {
           if (target === 'all') {
             const tabsBar = document.getElementById('menu-tabs-bar');
             if (tabsBar) {
-              const navbarHeight = 62;
-              const targetOffset = tabsBar.offsetTop - navbarHeight;
-              window.scrollTo({
-                top: targetOffset,
-                behavior: 'smooth'
-              });
+              window.scrollTo({ top: tabsBar.offsetTop - 72, behavior: 'smooth' });
             }
           } else {
             const targetSection = document.getElementById('section-' + target);
             if (targetSection) {
-              const navbarHeight = 62;
-              const tabsBarHeight = 52;
-              const targetOffset = targetSection.offsetTop - (navbarHeight + tabsBarHeight);
-              window.scrollTo({
-                top: targetOffset,
-                behavior: 'smooth'
-              });
+              window.scrollTo({ top: targetSection.offsetTop - 140, behavior: 'smooth' });
             }
           }
         }, 50);
@@ -119,47 +99,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* 5b. Horizontal tab swiper dynamic vignettes */
+  /* 5b. Horizontal tab swiper vignettes */
   const scrollContainers = document.querySelectorAll('.tab-scroll-container');
   scrollContainers.forEach(container => {
     const scroller = container.querySelector('.overflow-x-auto');
     if (!scroller) return;
 
     function updateVignettes() {
-      const scrollLeft = scroller.scrollLeft;
       const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
-      
-      // Reset scroll position if container no longer overflows to keep desktop layouts centered
-      if (maxScrollLeft <= 0 && scroller.scrollLeft > 0) {
-        scroller.scrollLeft = 0;
-      }
-      
+      if (maxScrollLeft <= 0 && scroller.scrollLeft > 0) scroller.scrollLeft = 0;
       const currentScrollLeft = scroller.scrollLeft;
-      
-      // Toggle left fade-in vignette if scrolled right by more than 4px
       container.classList.toggle('show-left', currentScrollLeft > 4);
-      
-      // Toggle right fade-in vignette if still has content to scroll by more than 4px
       container.classList.toggle('show-right', currentScrollLeft < maxScrollLeft - 4);
     }
 
     scroller.addEventListener('scroll', updateVignettes, { passive: true });
     window.addEventListener('resize', updateVignettes, { passive: true });
-    
-    // Evaluate after content fully renders/font finishes loading
     setTimeout(updateVignettes, 150);
     updateVignettes();
   });
 
-  /* 6. Hero parallax */
-  const heroBg = document.getElementById('hero-bg');
-  if (heroBg) {
-    window.addEventListener('scroll', () => {
-      heroBg.style.transform = `translateY(${window.scrollY * 0.22}px)`;
-    }, { passive: true });
-  }
-
-  /* 7. Contact form handler */
+  /* 6. Contact form handler */
   const contactForm = document.getElementById('contact-form');
   const formMsg     = document.getElementById('form-message');
   const modal       = document.getElementById('success-modal');
@@ -172,44 +132,41 @@ document.addEventListener('DOMContentLoaded', () => {
       if (submitBtn.disabled) return;
       const originalContent = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin flex-shrink-0"></span> Sending Message...';
-      
+      submitBtn.innerHTML = '<span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin flex-shrink-0"></span> Sending...';
+
       const formData = new FormData(contactForm);
-      
+
       fetch(contactForm.getAttribute('action') || 'pages/send_email.php', {
         method: 'POST',
         body: formData
       })
       .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) throw new Error('Network error');
         return response.json();
       })
       .then(data => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalContent;
-        
         if (modal) {
           modal.classList.remove('opacity-0', 'pointer-events-none');
           modal.querySelector('div').classList.remove('scale-95');
           modal.querySelector('div').classList.add('scale-100');
         } else if (formMsg) {
-          formMsg.textContent = data.message || 'Thank you for your message! We\'ll get back to you within 24 hours.';
+          formMsg.textContent = data.message || 'Thank you! We\'ll get back to you within 24 hours.';
           formMsg.classList.remove('hidden');
           setTimeout(() => formMsg.classList.add('hidden'), 6000);
         }
         contactForm.reset();
       })
       .catch(err => {
-        // Fallback for local sandbox environments
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalContent;
-        
         if (modal) {
           modal.classList.remove('opacity-0', 'pointer-events-none');
           modal.querySelector('div').classList.remove('scale-95');
           modal.querySelector('div').classList.add('scale-100');
         } else if (formMsg) {
-          formMsg.textContent = 'Thank you! Our café team and residents have safely received your note. We will curl back to you within 24 hours.';
+          formMsg.textContent = 'Thank you! We\'ll get back to you within 24 hours.';
           formMsg.classList.remove('hidden');
           setTimeout(() => formMsg.classList.add('hidden'), 6000);
         }
@@ -227,33 +184,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   modal?.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeBtn?.click();
-    }
+    if (e.target === modal) closeBtn?.click();
   });
 
-  /* 8. Smooth scroll anchor navigation */
+  /* 7. Smooth scroll anchor navigation */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e) {
       const targetHash = this.getAttribute('href');
       if (targetHash === '#') return;
       const t = document.querySelector(targetHash);
-      if (t) { 
-        e.preventDefault(); 
-        
-        // Close mobile nav menu if open
+      if (t) {
+        e.preventDefault();
         if (mobileNav && mobileNav.classList.contains('open')) {
           mobileNav.classList.remove('open');
           iconOpen?.classList.remove('hidden');
           iconClose?.classList.add('hidden');
         }
-        
-        t.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+        t.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
 
-  /* 9. Floating Back-to-Top Button */
+  /* 8. Back-to-Top Button */
   const backToTop = document.getElementById('back-to-top');
   if (backToTop) {
     window.addEventListener('scroll', () => {
@@ -271,37 +223,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* 10. Apple-Style Touch-Friendly Swipeable Lightbox Modal */
+  /* 9. Gallery Lightbox */
   const galleryCards = document.querySelectorAll('.gallery-item-card');
   if (galleryCards.length) {
     let lightbox = document.getElementById('lightbox-modal');
     if (!lightbox) {
       lightbox = document.createElement('div');
       lightbox.id = 'lightbox-modal';
-      lightbox.className = 'fixed inset-0 z-50 bg-[#271C14]/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 md:p-8 opacity-0 pointer-events-none transition-all duration-400 ease-out';
+      lightbox.className = 'fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 md:p-8 opacity-0 pointer-events-none transition-all duration-400 ease-out';
       lightbox.innerHTML = `
-        <!-- Close button -->
-        <button id="lightbox-close" class="absolute top-6 right-6 w-11 h-11 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all duration-200 z-50 hover:scale-105" aria-label="Close Lightbox">
+        <button id="lightbox-close" class="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/15 text-white transition-all duration-200 z-50" aria-label="Close">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
-
-        <!-- Left Nav Arrow -->
-        <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full hidden sm:flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all duration-200 z-50 hover:scale-105" aria-label="Previous Image">
+        <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full hidden sm:flex items-center justify-center bg-white/10 hover:bg-white/15 text-white transition-all duration-200 z-50" aria-label="Previous">
           <i data-lucide="chevron-left" class="w-5 h-5"></i>
         </button>
-
-        <!-- Right Nav Arrow -->
-        <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full hidden sm:flex items-center justify-center bg-white/10 hover:bg-white/20 text-white transition-all duration-200 z-50 hover:scale-105" aria-label="Next Image">
+        <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full hidden sm:flex items-center justify-center bg-white/10 hover:bg-white/15 text-white transition-all duration-200 z-50" aria-label="Next">
           <i data-lucide="chevron-right" class="w-5 h-5"></i>
         </button>
-
         <div class="flex-1 flex items-center justify-center max-w-4xl w-full h-[65vh] mt-10" id="lightbox-img-container">
-          <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-2xl shadow-cozy-lg scale-95 transition-all duration-400 ease-out">
+          <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-xl scale-95 transition-all duration-400 ease-out">
         </div>
-
         <div class="max-w-2xl w-full text-center pb-6 flex flex-col gap-2">
-          <h3 id="lightbox-title" class="font-serif text-lg md:text-2xl text-white font-bold leading-tight"></h3>
-          <p id="lightbox-desc" class="font-sans text-xs md:text-sm text-white/70 leading-relaxed"></p>
+          <h3 id="lightbox-title" class="text-lg md:text-xl text-white font-semibold leading-tight" style="letter-spacing:-0.02em;"></h3>
+          <p id="lightbox-desc" class="text-xs md:text-sm text-white/50 leading-relaxed"></p>
         </div>
       `;
       document.body.appendChild(lightbox);
@@ -311,12 +256,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const imgEl = document.getElementById('lightbox-img');
     const titleEl = document.getElementById('lightbox-title');
     const descEl = document.getElementById('lightbox-desc');
-    const closeBtn = document.getElementById('lightbox-close');
+    const lbCloseBtn = document.getElementById('lightbox-close');
     const prevBtn = document.getElementById('lightbox-prev');
     const nextBtn = document.getElementById('lightbox-next');
 
-    let currentList = [];
-    let currentIndex = 0;
+    let currentList = [], currentIndex = 0;
 
     function getVisibleCards() {
       return Array.from(galleryCards).filter(card => !card.classList.contains('hidden'));
@@ -329,16 +273,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const img = card.querySelector('img');
       const title = card.querySelector('h3');
       const desc = card.querySelector('p');
-
       if (imgEl && img) imgEl.src = img.src;
       if (titleEl && title) titleEl.textContent = title.textContent;
       if (descEl && desc) descEl.textContent = desc.textContent;
-
       lightbox.classList.remove('opacity-0', 'pointer-events-none');
-      setTimeout(() => {
-        imgEl?.classList.remove('scale-95');
-        imgEl?.classList.add('scale-100');
-      }, 50);
+      setTimeout(() => { imgEl?.classList.remove('scale-95'); imgEl?.classList.add('scale-100'); }, 50);
     }
 
     function closeLightbox() {
@@ -347,39 +286,15 @@ document.addEventListener('DOMContentLoaded', () => {
       lightbox.classList.add('opacity-0', 'pointer-events-none');
     }
 
-    function showNext() {
+    function showSlide(direction) {
       if (currentList.length <= 1) return;
       imgEl?.classList.add('opacity-0', 'scale-95');
       setTimeout(() => {
-        currentIndex = (currentIndex + 1) % currentList.length;
+        currentIndex = (currentIndex + direction + currentList.length) % currentList.length;
         const card = currentList[currentIndex];
-        const img = card.querySelector('img');
-        const title = card.querySelector('h3');
-        const desc = card.querySelector('p');
-
-        if (imgEl && img) imgEl.src = img.src;
-        if (titleEl && title) titleEl.textContent = title.textContent;
-        if (descEl && desc) descEl.textContent = desc.textContent;
-
-        imgEl?.classList.remove('opacity-0', 'scale-95');
-        imgEl?.classList.add('scale-100');
-      }, 200);
-    }
-
-    function showPrev() {
-      if (currentList.length <= 1) return;
-      imgEl?.classList.add('opacity-0', 'scale-95');
-      setTimeout(() => {
-        currentIndex = (currentIndex - 1 + currentList.length) % currentList.length;
-        const card = currentList[currentIndex];
-        const img = card.querySelector('img');
-        const title = card.querySelector('h3');
-        const desc = card.querySelector('p');
-
-        if (imgEl && img) imgEl.src = img.src;
-        if (titleEl && title) titleEl.textContent = title.textContent;
-        if (descEl && desc) descEl.textContent = desc.textContent;
-
+        if (imgEl) imgEl.src = card.querySelector('img')?.src || '';
+        if (titleEl) titleEl.textContent = card.querySelector('h3')?.textContent || '';
+        if (descEl) descEl.textContent = card.querySelector('p')?.textContent || '';
         imgEl?.classList.remove('opacity-0', 'scale-95');
         imgEl?.classList.add('scale-100');
       }, 200);
@@ -397,43 +312,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    closeBtn?.addEventListener('click', closeLightbox);
+    lbCloseBtn?.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox || e.target.id === 'lightbox-img-container') closeLightbox();
     });
+    prevBtn?.addEventListener('click', (e) => { e.stopPropagation(); showSlide(-1); });
+    nextBtn?.addEventListener('click', (e) => { e.stopPropagation(); showSlide(1); });
 
-    prevBtn?.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
-    nextBtn?.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
-
-    // Keyboard support
     document.addEventListener('keydown', (e) => {
       if (lightbox.classList.contains('pointer-events-none')) return;
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showSlide(1);
+      if (e.key === 'ArrowLeft') showSlide(-1);
     });
 
-    // Touch Swiping Gesture Support (Elite Mobile UX)
     let touchStartX = 0;
-    let touchEndX = 0;
-    lightbox.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
+    lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
     lightbox.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
+      const diff = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(diff) > 60) showSlide(diff < 0 ? 1 : -1);
     }, { passive: true });
-
-    function handleSwipe() {
-      const threshold = 60;
-      if (touchEndX < touchStartX - threshold) {
-        showNext(); // Swipe left -> Next image
-      }
-      if (touchEndX > touchStartX + threshold) {
-        showPrev(); // Swipe right -> Prev image
-      }
-    }
   }
 
 });

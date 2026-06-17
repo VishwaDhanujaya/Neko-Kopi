@@ -1,6 +1,6 @@
 <?php
 /**
- * send_email.php — Premium Email Processing Controller for Neko & Kopi Colombo
+ * send_email.php — Premium Email Processing Controller for Neko & Kopi Catfé Colombo
  */
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -49,7 +49,7 @@ if ($subject === 'other')       $subjectLabel = 'Something Else';
 $to = 'nekoteammarketing@gmail.com';
 
 // 6. Build a beautiful, premium HTML Email Template
-$emailSubject = "Neko & Kopi Website Enquiry: $subjectLabel by $name";
+$emailSubject = "Neko & Kopi Catfé Website Enquiry: $subjectLabel by $name";
 
 // HTML Email Layout
 $htmlContent = "
@@ -57,7 +57,7 @@ $htmlContent = "
 <html>
 <head>
   <meta charset='utf-8'>
-  <title>New Neko &amp; Kopi Message</title>
+  <title>New Neko &amp; Kopi Catfé Message</title>
   <style>
     body {
       margin: 0;
@@ -166,8 +166,8 @@ $htmlContent = "
       
       <!-- Brand Header -->
       <div class='header'>
-        <img class='header-logo' src='cid:neko_logo' alt='Neko &amp; Kopi'>
-        <h1 class='header-title'>Neko &amp; Kopi Colombo</h1>
+        <img class='header-logo' src='cid:neko_logo' alt='Neko &amp; Kopi Catfé'>
+        <h1 class='header-title'>Neko &amp; Kopi Catfé Colombo</h1>
       </div>
 
       <!-- Core Content -->
@@ -201,11 +201,11 @@ $htmlContent = "
       <!-- Footer Info -->
       <div class='footer'>
         <p class='footer-text'>
-          <strong>Neko &amp; Kopi Cat Café Colombo</strong><br>
+          <strong>Neko &amp; Kopi Catfé Cat Café Colombo</strong><br>
           319/4, 05 Nawala Rd, Nawala, Colombo 00500, Sri Lanka
         </p>
         <p class='footer-copyright'>
-          &copy; " . date('Y') . " Neko &amp; Kopi. All rights reserved. &middot; Automated Web Service
+          &copy; " . date('Y') . " Neko &amp; Kopi Catfé. All rights reserved. &middot; Automated Web Service
         </p>
       </div>
 
@@ -240,14 +240,17 @@ try {
     $mail->Port       = $smtpPort;
 
     // Recipients
-    $mail->setFrom($smtpUser, 'Neko & Kopi Website');
+    $mail->setFrom($smtpUser, 'Neko & Kopi Catfé Website');
     $mail->addAddress($recipient); // Send to recipient address
     $mail->addReplyTo($email, $name); // Reply to the sender
 
     // Embedded Logo Attachment
-    $logoPath = __DIR__ . '/../assets/images/logo.png';
+    $logoPath = __DIR__ . '/../assets/images/logo.jpeg';
+    if (!file_exists($logoPath)) {
+        $logoPath = __DIR__ . '/../assets/images/logo.png';
+    }
     if (file_exists($logoPath)) {
-        $mail->addEmbeddedImage($logoPath, 'neko_logo', 'logo.png');
+        $mail->addEmbeddedImage($logoPath, 'neko_logo', basename($logoPath));
     }
 
     // Content
